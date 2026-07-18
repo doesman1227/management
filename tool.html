@@ -175,7 +175,7 @@
       <h3>会社の基本情報</h3>
       <p class="hint">戦略シートの表紙に印字されます。</p>
       <div class="row-2">
-        <div><label class="f-label">会社名・屋号</label><input type="text" data-f="companyName" placeholder="例:やまだベーカリー"></div>
+        <div><label class="f-label">会社名・屋号</label><input type="text" data-f="companyName" placeholder="例:株式会社ミナト精工"></div>
         <div><label class="f-label">代表者・作成者</label><input type="text" data-f="ownerName" placeholder="例:山田 太郎"></div>
       </div>
       <div class="row-2">
@@ -183,7 +183,7 @@
         <div><label class="f-label">対象期間 <small>(例:2026年度)</small></label><input type="text" data-f="period" placeholder="例:2026年度(2026年4月〜2027年3月)"></div>
       </div>
       <label class="f-label">事業内容(ひとこと)</label>
-      <input type="text" data-f="businessDesc" placeholder="例:住宅街でのパン製造小売、近隣カフェへの卸">
+      <input type="text" data-f="businessDesc" placeholder="例:精密金属部品の加工。自動車・産業機械・医療機器向け">
     </div>
     <div class="panel-nav"><span></span><button class="btn btn-navy" onclick="goTab(1)">次へ:STEP1 現状棚卸し →</button></div>
   </div>
@@ -194,11 +194,11 @@
       <h3>3C分析 —— 事実を3つの箱に整理する</h3>
       <p class="hint">「意見」ではなく「事実」を箇条書きで。書き方の詳細と記入例は <a href="step1.html" target="_blank">ステップ1の解説</a> を参照。</p>
       <label class="f-label">顧客(Customer)<small> —— 誰が・何を求めて買っているか。客数・単価の傾向</small></label>
-      <textarea data-f="c_customer" placeholder="例:売上の6割は半径1km圏内の常連客。30〜40代の子育て世帯が中心。「子どもに安心して食べさせられる」の声多数。"></textarea>
+      <textarea data-f="c_customer" placeholder="例:売上の45%が最大取引先A社。毎年2%のコストダウン要請。一方、装置メーカーからの試作相談が3年で1.6倍に増加。"></textarea>
       <label class="f-label">競合(Competitor)<small> —— 直接競合・間接競合とその強み・弱み</small></label>
-      <textarea data-f="c_competitor" placeholder="例:駅前チェーンAは2割安いが無添加・個別対応は不可。朝食需要はコンビニに流出。"></textarea>
+      <textarea data-f="c_competitor" placeholder="例:同業の量産専業は価格勝負だが試作対応が遅い。海外調達は3割安いが納期長い。試作〜量産の一貫対応は手薄。"></textarea>
       <label class="f-label">自社(Company)<small> —— 選ばれる理由(顧客の声)、稼ぎ頭とお荷物、経営資源</small></label>
-      <textarea data-f="c_company" placeholder="例:稼ぎ頭は食パンと惣菜パン(売上55%)。移動販売は3年連続赤字。強みは無添加製法と常連との関係。"></textarea>
+      <textarea data-f="c_company" placeholder="例:稼ぎ頭は自動車部品(売上60%)だが粗利率15%。産業機械部品は粗利率32%で成長中。強みは高精度加工と一貫対応、弱みは技能の属人化。"></textarea>
     </div>
 
     <div class="form-card">
@@ -235,9 +235,9 @@
       <h3>事業ドメイン —— うちは何屋か</h3>
       <p class="hint">3つの空欄を埋めると一文が完成します。「モノ」ではなく「顧客の困りごと」で。記入例は <a href="step2.html" target="_blank">ステップ2の解説</a> へ。</p>
       <div class="row-3">
-        <div><label class="f-label">誰の</label><input type="text" data-f="dom_who" placeholder="例:地域の家族"></div>
-        <div><label class="f-label">どんな困りごと・願いを</label><input type="text" data-f="dom_problem" placeholder="例:『毎日の食卓と特別な日』"></div>
-        <div><label class="f-label">どの強みで</label><input type="text" data-f="dom_strength" placeholder="例:無添加・焼きたてのパン"></div>
+        <div><label class="f-label">誰の</label><input type="text" data-f="dom_who" placeholder="例:装置・医療機器メーカー"></div>
+        <div><label class="f-label">どんな困りごと・願いを</label><input type="text" data-f="dom_problem" placeholder="例:『試作から量産まで』の品質と納期"></div>
+        <div><label class="f-label">どの強みで</label><input type="text" data-f="dom_strength" placeholder="例:ミクロン精度の一貫加工"></div>
       </div>
       <div class="domain-preview" id="domainPreview">私たちは、(誰)の(困りごと)を、(強み)で解決する会社です</div>
     </div>
@@ -259,7 +259,7 @@
       <label class="f-label">優先順位1の打ち手</label>
       <div class="row-2">
         <select data-f="grow1_dir"><option value="">方向を選択</option><option>市場浸透(既存客×既存商品)</option><option>新市場開拓(新規客×既存商品)</option><option>新商品開発(既存客×新商品)</option><option>多角化(新規客×新商品)</option></select>
-        <input type="text" data-f="grow1_act" placeholder="打ち手 例:LINE通知で来店頻度を月2→3回へ">
+        <input type="text" data-f="grow1_act" placeholder="打ち手 例:既存顧客の別部門への技術提案を標準活動に">
       </div>
       <label class="f-label">優先順位2の打ち手</label>
       <div class="row-2">
@@ -272,8 +272,8 @@
         <input type="text" data-f="grow3_act" placeholder="打ち手">
       </div>
       <div class="row-2" style="margin-top:14px;">
-        <div><label class="f-label">売上目標 <small>現状 → 3年後</small></label><input type="text" data-f="goal_sales" placeholder="例:4,200万円 → 4,800万円"></div>
-        <div><label class="f-label">利益目標 <small>現状 → 3年後</small></label><input type="text" data-f="goal_profit" placeholder="例:経常140万円 → 300万円"></div>
+        <div><label class="f-label">売上目標 <small>現状 → 3年後</small></label><input type="text" data-f="goal_sales" placeholder="例:30億円 → 33億円"></div>
+        <div><label class="f-label">利益目標 <small>現状 → 3年後</small></label><input type="text" data-f="goal_profit" placeholder="例:経常9,000万円 → 1.65億円"></div>
       </div>
     </div>
     <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(1)">← STEP1</button><button class="btn btn-navy" onclick="goTab(3)">次へ:STEP3 事業戦略 →</button></div>
@@ -285,11 +285,11 @@
       <h3>事業戦略シート —— 最優先事業の勝ち方</h3>
       <p class="hint">まず最優先の事業1つについて記入します。決め方の詳細は <a href="step3.html" target="_blank">ステップ3の解説</a> へ。</p>
       <label class="f-label">対象の事業</label>
-      <input type="text" data-f="t_business" placeholder="例:店頭販売事業">
+      <input type="text" data-f="t_business" placeholder="例:産業機械部品事業">
       <label class="f-label">① 誰に <small>—— ターゲットと一人の顧客像(ペルソナ)</small></label>
-      <textarea data-f="t_who" placeholder="例:半径1kmの食の安全を気にする子育て世帯。ペルソナ:佐藤さん(38)、時短勤務、朝7時半に店の前を通る…"></textarea>
+      <textarea data-f="t_who" placeholder="例:中部・関東圏の装置メーカーの開発部門。ペルソナ:田村さん(46)、開発課長。試作の精度不良と納期遅れで開発日程が崩れるのが悩み…"></textarea>
       <label class="f-label">② 何を <small>—— 提供価値(顧客が求める×競合ができない×自社ができる)</small></label>
-      <textarea data-f="t_value" placeholder="例:「子どもに毎日安心して食べさせられる、焼きたてのパンがある暮らし」"></textarea>
+      <textarea data-f="t_value" placeholder="例:「図面段階から相談でき、試作から量産まで任せられる高精度加工」"></textarea>
       <label class="f-label">③ 基本戦略</label>
       <select data-f="t_strategy">
         <option value="">選択してください</option>
@@ -298,11 +298,11 @@
         <option>コストリーダーシップ</option>
       </select>
       <label class="f-label">③' 差別化の軸 <small>—— 「競合は◯◯できないが、うちは◯◯できる」の形で1〜2本</small></label>
-      <textarea data-f="t_diff" placeholder="例:(1)無添加・国産小麦の製法 (2)名前と好みを覚えた接客+取り置き対応"></textarea>
+      <textarea data-f="t_diff" placeholder="例:(1)ミクロン精度と品質認証 (2)図面段階からのVE提案+試作5日納期"></textarea>
       <label class="f-label">④ 価格方針 <small>—— 安売りしない理由まで</small></label>
-      <textarea data-f="t_price" placeholder="例:食パン480円を維持。比較対象を「パンの値段」から「家族の毎日の安心」に変える。"></textarea>
+      <textarea data-f="t_price" placeholder="例:相場より1〜2割高を維持。比較対象を「単価」から「開発遅延まで含めた総コスト」に変える。"></textarea>
       <label class="f-label">⑤ 勝ち負けの物差し <small>—— 現状 → 目標の数字で</small></label>
-      <textarea data-f="t_metric" placeholder="例:常連客数(月4回以上来店)180人 → 1年後300人"></textarea>
+      <textarea data-f="t_metric" placeholder="例:新規口座 年10件/試作→量産転換率 25%→40%"></textarea>
     </div>
     <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(2)">← STEP2</button><button class="btn btn-navy" onclick="goTab(4)">次へ:STEP4 機能別戦略 →</button></div>
   </div>
@@ -330,12 +330,12 @@
       <p class="hint">仕組みの作り方は <a href="step5.html" target="_blank">ステップ5の解説</a> へ。</p>
       <div class="row-2">
         <div><label class="f-label">月次会議の日時(固定)</label><input type="text" data-f="m_when" placeholder="例:毎月第1火曜 15:00〜16:00"></div>
-        <div><label class="f-label">参加者</label><input type="text" data-f="m_members" placeholder="例:店主、女将、田中(製造)"></div>
+        <div><label class="f-label">参加者</label><input type="text" data-f="m_members" placeholder="例:社長、営業部長、製造部長、経理部長"></div>
       </div>
       <label class="f-label">戦略を臨時見直しするトリガー</label>
       <textarea data-f="m_triggers" placeholder="例:主要取引先の喪失/売上2割以上の急減/有力競合の商圏参入/大きな法改正・原価高騰"></textarea>
       <label class="f-label">社員への共有方法</label>
-      <textarea data-f="m_share" placeholder="例:朝礼で月1回戦略の言葉で話す/KPIボードを休憩室に掲示/評価面談で戦略上の行動を話題にする"></textarea>
+      <textarea data-f="m_share" placeholder="例:全体会議で月1回戦略の言葉で話す/KPIボードを職場に掲示/評価面談で戦略上の行動を話題にする"></textarea>
       <label class="f-label">年次見直しの時期</label>
       <input type="text" data-f="m_review" placeholder="例:毎年1月(決算2か月前)に半日">
     </div>
@@ -401,12 +401,12 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 function addBizRow(data = {}) {
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td><input type="text" data-col="name" placeholder="例:店頭販売"></td>
+    <td><input type="text" data-col="name" placeholder="例:自動車部品(量産)"></td>
     <td><input type="text" data-col="sales" placeholder="70%"></td>
     <td><input type="text" data-col="profit" placeholder="高/中/低"></td>
     <td><select data-col="growth"><option value=""></option><option>↑ 伸びる</option><option>→ 横ばい</option><option>↓ 縮む</option></select></td>
     <td><select data-col="verdict"><option value=""></option><option>伸ばす</option><option>維持</option><option>改善</option><option>撤退</option></select></td>
-    <td><input type="text" data-col="policy" placeholder="例:営業強化し3年で構成30%へ"></td>
+    <td><input type="text" data-col="policy" placeholder="例:技術営業を強化し3年で構成35%へ"></td>
     <td><button class="row-del" title="行を削除" onclick="this.closest('tr').remove(); save();">✕</button></td>`;
   BIZ_COLS.forEach(c => { const el = tr.querySelector(`[data-col="${c}"]`); if (data[c]) el.value = data[c]; });
   document.getElementById('bizBody').appendChild(tr);
@@ -418,7 +418,7 @@ function addActRow(data = {}) {
     <td><input type="text" data-col="action" placeholder="施策"></td>
     <td><input type="text" data-col="owner" placeholder="個人名"></td>
     <td><input type="text" data-col="due" placeholder="例:6月末"></td>
-    <td><input type="text" data-col="kpi" placeholder="例:登録者数 0→300人"></td>
+    <td><input type="text" data-col="kpi" placeholder="例:新規訪問 月12件"></td>
     <td><button class="row-del" title="行を削除" onclick="this.closest('tr').remove(); save();">✕</button></td>`;
   ACT_COLS.forEach(c => { const el = tr.querySelector(`[data-col="${c}"]`); if (data[c]) el.value = data[c]; });
   document.getElementById('actBody').appendChild(tr);
