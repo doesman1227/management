@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>よくある質問(FAQ)|経営戦略まとめノート</title>
+<meta name="description" content="経営戦略に関するよくある質問集。戦略全般・全社戦略・事業戦略・機能別戦略のカテゴリ別に絞り込み、キーワードで検索できます。">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== FAQ ===== */
+  details {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 0; margin-bottom: 12px; overflow: hidden;
+  }
+  summary {
+    cursor: pointer; padding: 16px 22px; font-weight: 700; color: var(--navy);
+    list-style: none; position: relative; padding-right: 48px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+"; position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%); font-size: 1.3rem; color: var(--orange);
+  }
+  details[open] summary::after { content: "−"; }
+  details .answer { padding: 0 22px 18px; font-size: .92rem; }
+  summary::before { content: "Q. "; color: var(--orange); }
+  .answer::before { content: "A. "; color: var(--teal); font-weight: 700; }
+
+  /* ===== FAQ filter ===== */
+  .faq-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .faq-filter button {
+    font-family: inherit; cursor: pointer; border: 1px solid var(--border); background: #fff;
+    color: var(--muted); border-radius: 999px; padding: 7px 18px; font-size: .83rem; font-weight: 700;
+    transition: background .15s, color .15s;
+  }
+  .faq-filter button:hover { background: #eef3f8; color: var(--blue); }
+  .faq-filter button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .faq-cat {
+    display: inline-block; font-size: .7rem; font-weight: 700; color: #fff;
+    border-radius: 4px; padding: 1px 9px; margin-right: 8px; vertical-align: 2px;
+    white-space: nowrap;
+  }
+  .cat-general { background: #8896a5; }
+  .cat-corp { background: var(--blue); }
+  .cat-biz { background: var(--teal); }
+  .cat-func { background: var(--orange); }
+  .faq-hide { display: none; }
+  .faq-count { font-size: .8rem; color: var(--muted); margin-bottom: 14px; }
+  .faq-toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .faq-search { flex: 1; min-width: 220px; position: relative; }
+  .faq-search input {
+    width: 100%; font-family: inherit; font-size: .9rem; color: var(--text);
+    padding: 10px 16px 10px 38px; border: 1px solid var(--border); border-radius: 999px; background: #fff;
+  }
+  .faq-search input:focus { outline: 2px solid rgba(45,109,163,.35); }
+  .faq-search::before { content: "🔍"; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: .85rem; }
+  .faq-toggle {
+    font-family: inherit; cursor: pointer; background: #fff; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px; font-size: .78rem; font-weight: 700;
+  }
+  .faq-toggle:hover { background: #eef3f8; color: var(--blue); }
+  .faq-group {
+    color: var(--navy); font-size: 1.05rem; margin: 30px 0 12px;
+    padding-left: 10px; border-left: 5px solid #8896a5;
+  }
+  .faq-group small { font-weight: 400; color: var(--muted); font-size: .8rem; margin-left: 8px; }
+  .g-corp { border-color: var(--blue); }
+  .g-biz { border-color: var(--teal); }
+  .g-func { border-color: var(--orange); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">経営戦略<span>｜</span>まとめノート</a>
+    <button class="nav-toggle" onclick="document.getElementById('siteNav').classList.toggle('open')" aria-label="メニューを開閉">☰ メニュー</button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="corporate.html">全社戦略</a></li>
+        <li><a href="business.html">事業戦略</a></li>
+        <li><a href="functional.html">機能別戦略</a></li>
+        <li><a href="roadmap.html">ロードマップ</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+        <li><a href="tool.html" class="nav-tool">✎ 作成ツール</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="step-badge">FAQ</span>
+    <h1>よくある質問</h1>
+    <p>経営戦略づくりでつまずきやすいポイントをQ&amp;A形式でまとめました。カテゴリで絞り込むか、キーワードで検索してください。</p>
+  </div>
+</div>
+
+<div class="breadcrumb"><a href="index.html">ホーム</a> › よくある質問(FAQ)</div>
+
+<main>
+
+  <section id="faq">
+    <span class="section-label">FAQ</span>
+    <h2>よくある質問</h2>
+    <p class="lead">カテゴリのボタンで絞り込むか、キーワード(例:「KPI」「ターゲット」)で検索できます。</p>
+
+    <div class="faq-filter" id="faqFilter">
+      <button class="active" data-cat="all">すべて</button>
+      <button data-cat="general">戦略全般</button>
+      <button data-cat="corp">全社戦略</button>
+      <button data-cat="biz">事業戦略</button>
+      <button data-cat="func">機能別戦略</button>
+    </div>
+    <div class="faq-toolbar">
+      <div class="faq-search"><input type="search" id="faqSearch" placeholder="キーワードで検索(質問と回答の全文が対象)"></div>
+      <button class="faq-toggle" id="faqOpenAll">すべて開く</button>
+      <button class="faq-toggle" id="faqCloseAll">すべて閉じる</button>
+    </div>
+    <p class="faq-count" id="faqCount"></p>
+
+    <!-- 戦略全般 -->
+    <h3 class="faq-group" data-group="general">戦略全般 <small>—— 基本の考え方・現状分析・経営計画</small></h3>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>戦略と戦術は何が違うのですか?</summary>
+      <div class="answer">戦略は「どこで・どう戦うか」という方針、戦術はそれを実行する個々の手段です。例えば「住宅街の子育て世帯に絞って地域一番の安心を提供する」が戦略、「LINEで焼き上がり通知を送る」が戦術です。戦術は戦略に沿って選ばれて初めて効果を発揮します。</div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>うちは小さな会社で事業も1つだけ。それでも3階層必要ですか?</summary>
+      <div class="answer">事業が1つの会社では、全社戦略と事業戦略はほぼ一体になります。その場合は「①うちは何屋で何はやらないか(全社)」「②誰にどう選ばれるか(事業)」「③各担当が何をするか(機能別)」と、問いの違いとして意識すれば十分です。規模に関係なく、この整理は有効です。</div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>経営理念・ビジョンと経営戦略の関係は?</summary>
+      <div class="answer">理念(なぜ会社が存在するか)とビジョン(目指す姿)が「目的地」、経営戦略はそこへ向かう「ルート選び」です。目的地が決まっていないとルートは選べないので、順番としては理念・ビジョン→全社戦略→事業戦略→機能別戦略となります。</div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>フレームワークはたくさんあって混乱します。最低限どれを使えばいい?</summary>
+      <div class="answer">中小企業ならまず3つで十分です。現状分析に「3C分析」(またはSWOT)、成長の方向づけに「アンゾフのマトリクス」、勝ち方の決定に「ポーターの基本戦略(集中×差別化)」。フレームワークは思考の抜け漏れを防ぐ道具であり、埋めること自体が目的ではありません。</div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>全社戦略・事業戦略・機能別戦略は、どのように連携させるべきですか?</summary>
+      <div class="answer">合言葉は<strong>「上から下へは方針、下から上へは数字と現場の事実」</strong>という双方向の流れです。<strong>作るとき</strong>は全社→事業→機能の順で、上位の決定を下位の前提にします(全社で決めた「土俵」の中で事業の「勝ち方」を決め、その勝ち方から機能の「施策」を導く)。連携が取れているかは2つの質問で確認できます。①どの施策も「事業戦略の差別化軸を実現するため」と説明できるか、②どの事業戦略も「全社のドメインと資源配分」に沿っているか。<strong>運用するとき</strong>は逆に下から上へ:月次会議で機能別のKPI→事業の物差し→全社の目標の順に数字をつなげて見ます。ズレが出たら、いきなり戦略を疑わず「実行量→戦術→施策→戦略」と下の階層から順に見直すのが原則です。<a href="step5.html">→ ステップ5の解説へ</a></div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>経営計画はどの段階で、どのように作成すべきですか?</summary>
+      <div class="answer"><strong>戦略が固まってから</strong>作ります。経営計画とは、戦略(5つのステップ)の内容を数字と時間軸に落とした文書だからです。計画から作り始めると「前年比◯%増」といった根拠のない数字合わせになりがちで、順番は必ず戦略→計画です。作り方は2階建てで十分:①<strong>中期計画(3〜5年)</strong>——全社戦略で置いた3年後の売上・利益目標を年度ごとに展開したもの、②<strong>単年度計画</strong>——機能別アクションプランに月次の数値目標と資金繰り予定を付けたもの。中小企業ならA4数枚で構いません。金融機関への提出や補助金申請で所定の様式が必要な場合も、中身はこの戦略シートからの転記で作れます。<a href="tool.html">→ 作成ツールで戦略シートを作る</a></div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>戦略は誰と、どのくらいの頻度で見直すべきですか?</summary>
+      <div class="answer">戦略本体の見直しは年1回、幹部(いなければ番頭役の社員や顧問税理士・中小企業診断士など)を交えて行うのがおすすめです。一方、施策の進捗確認は月1回。外部環境が大きく変わったとき(主要取引先の喪失、法改正、競合の参入など)は臨時で見直します。</div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>相談できる公的な窓口はありますか?</summary>
+      <div class="answer">あります。各地の商工会議所・商工会、よろず支援拠点(国が設置する無料経営相談所)、中小企業診断士による経営相談などが利用できます。経営計画の策定は各種補助金(事業再構築、ものづくり、持続化など)の申請にも直結するため、専門家と一緒に作るのも有効です。</div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>3C分析はどの順番で考えるべきですか?</summary>
+      <div class="answer"><strong>顧客(Customer)→競合(Competitor)→自社(Company)</strong>の順がおすすめです。理由は2つあります。①自社から書き始めると「うちの強みは◯◯のはず」という思い込みが分析全体を歪めるため、まず動かしがたい事実である顧客・市場から押さえる。②競合の強み・弱みは「顧客のニーズに応えられているか」という物差しがあって初めて評価できるため、顧客の後に見る必要がある。最後に「顧客が求め、競合ができていないことに対して、自社は何ができるか」を確認する——外から内への流れが、事実に基づいた分析への近道です。<a href="step1.html">→ ステップ1の解説へ</a></div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>現状の棚卸し(3C・SWOT)は全社で実施すべきですか?事業ごとに行うべきですか?</summary>
+      <div class="answer">原則は<strong>事業(市場)ごと</strong>です。顧客も競合も事業ごとに別物だからです(やまだベーカリーなら、店頭販売の競合は駅前チェーンとコンビニ、卸事業の競合は業務用パンメーカー)。ただし、自社(Company)のうち資金・人材・設備・技術といった内部資源は全社共通なので、ここは1回の棚卸しで足ります。実務的な進め方は、①まず全社レベルでざっくり1枚作る、②売上の大きい主力事業から順に、事業ごとの3C・SWOTを深掘りする、の2段構えがおすすめです。事業が1つの会社なら、全社=事業なので1枚で十分です。<a href="step1.html">→ ステップ1の解説へ</a></div>
+    </details>
+    <details data-cat="general">
+      <summary><span class="faq-cat cat-general">戦略全般</span>3C分析では具体的に何を明確にして、それをどのように活かせばいいですか?</summary>
+      <div class="answer">明確にするのは次の3点です。<strong>顧客:</strong>「実際に買っているのは誰で、何に困り、何にお金を払っているか」。<strong>競合:</strong>「誰がライバルで(間接競合も含む)、何が強く、何が手薄か」。<strong>自社:</strong>「顧客に選ばれている本当の理由と、使える経営資源は何か」。活かし方の核心は、3つを重ねて<strong>「顧客が求めている × 競合ができていない × 自社ができる」の重なり</strong>を見つけることです。この重なりが、事業戦略の提供価値(顧客がお金を払う理由)と差別化の軸の根拠になります。分析はシートを埋めること自体が目的ではなく、「勝てる場所」を事実から見つけるための道具です。<a href="step1.html">→ ステップ1の解説へ</a></div>
+    </details>
+
+    <!-- 全社戦略 -->
+    <h3 class="faq-group g-corp" data-group="corp">全社戦略 <small>—— 土俵の決め方・選択と集中・組織</small></h3>
+    <details data-cat="corp">
+      <summary><span class="faq-cat cat-corp">全社戦略</span>新しい事業(多角化)を始めたいのですが、何に気をつけるべきですか?</summary>
+      <div class="answer">確認すべきは2点です。①既存の強み(技術・顧客基盤・信用)がそのまま武器になるか、②既存事業のヒト・カネを圧迫しないか。アンゾフのマトリクスでは、多角化(新規客×新商品)は最もリスクの高い選択肢です。まず市場浸透・新市場開拓・新商品開発で打ち手を探し、多角化をやる場合も「小さく試して検証してから広げる」を徹底してください。<a href="step2.html">→ ステップ2の解説へ</a></div>
+    </details>
+    <details data-cat="corp">
+      <summary><span class="faq-cat cat-corp">全社戦略</span>赤字事業をやめる決断がなかなかできません。</summary>
+      <div class="answer">思い入れや「ここまで投資したのに」という気持ち(サンクコスト)が判断を曇らせるのが普通です。対策は、撤退基準を先に数字で決めておくこと(例:2期連続赤字かつ改善見込みなし)。さらに「撤退で浮く人手・時間・資金をどこに付け替えるか」をセットで決めると、後ろ向きの決断が前向きな再配分に変わります。取引先・従業員への説明手順も含めて計画的に進めましょう。</div>
+    </details>
+    <details data-cat="corp">
+      <summary><span class="faq-cat cat-corp">全社戦略</span>事業ドメインは一度決めたら変えないものですか?</summary>
+      <div class="answer">年1回の戦略見直しの際に点検し、環境が大きく変わったとき(主要市場の縮小、技術の転換など)は書き換えを検討します。ただしコロコロ変えるものではありません。良い判断基準は「新しい話が来たとき、ドメインの内か外かを判定する道具として機能しているか」。判定に使えなくなったら見直しのサインです。</div>
+    </details>
+    <details data-cat="corp">
+      <summary><span class="faq-cat cat-corp">全社戦略</span>複数の事業がある場合、資源配分はどう決めればいいですか?</summary>
+      <div class="answer">各事業を「儲かっているか(売上・粗利)」×「伸びそうか(市場の成長性)」の2軸で評価し、「伸ばす・維持・改善・撤退」に仕分けます(簡易PPM)。基本の型は、成熟した稼ぎ頭(維持)が生む利益を、成長分野(伸ばす)に投資すること。「全部に均等に」は資源の分散であり、戦略ではありません。<a href="step2.html">→ ステップ2の解説へ</a></div>
+    </details>
+    <details data-cat="corp">
+      <summary><span class="faq-cat cat-corp">全社戦略</span>事業ドメインやアンゾフの成長マトリクスは、全社で考えるのですか?事業ごとに考えるのですか?</summary>
+      <div class="answer">結論から言うと、<strong>ドメインは「全社と事業の2階層」、アンゾフは「事業ごと」</strong>が基本です。ドメインには、会社全体として「何屋か」を定める<strong>企業ドメイン</strong>(全社レベル)と、各事業の「誰に・何を・どの強みで」を定める<strong>事業ドメイン</strong>(事業レベル)があります。事業が1つの会社では両者は実質同じものですが、複数事業がある場合は、まず企業ドメインで全体の傘を定め、その傘の中に収まる形で各事業のドメインを定義します(傘からはみ出す事業は、そもそもやるべきかを問い直すサインです)。一方、アンゾフの成長マトリクスは「商品×市場」の組み合わせで考える道具なので、<strong>事業ごとに検討</strong>します。そのうえで、各事業から出てきた打ち手のどれに優先的にヒト・カネを配分するかを決めるのが全社戦略の役割、という分担です。<a href="step2.html">→ ステップ2の解説へ</a></div>
+    </details>
+    <details data-cat="corp">
+      <summary><span class="faq-cat cat-corp">全社戦略</span>組織は何を基準に作ればよいでしょうか?</summary>
+      <div class="answer">大原則は<strong>「組織は戦略に従う」</strong>(経営学者チャンドラーの言葉)です。先に戦略を決め、それを実行するのに必要な機能・役割から逆算して組織を設計します。手順は3つ:①戦略の実行に必要な機能を洗い出す(機能別アクションプランの「機能」欄がそのまま材料になります)、②各機能に責任者を1人ずつ決める(小さな会社では兼任で構いませんが、責任者は必ず1人に——「全員で」は「誰もやらない」と同じです)、③戦略の重点に人を厚く配置する(差別化の源泉となる機能に、最も力のある人材を充てる)。逆に「今いる人に合わせて仕事を割り振る」と、戦略上重要な機能に誰もいない事態が起きます。兼任だらけの中小企業では、<strong>「機能の抜け」(例:誰も財務を見ていない)を発見すること</strong>が、組織図を書く最大の意味です。<a href="step4.html">→ ステップ4の解説へ</a></div>
+    </details>
+
+    <!-- 事業戦略 -->
+    <h3 class="faq-group g-biz" data-group="biz">事業戦略 <small>—— ターゲット・差別化・競争への対応</small></h3>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>差別化できる強みが見つかりません。</summary>
+      <div class="answer">まず常連のお客様に「他にも選択肢がある中で、なぜうちを選ぶのか」を直接聞いてください。強みは社内では「当たり前」になっていて自覚できないことが多く、外から教えてもらうのが最短です。それでも見つからなければ、これから作ります。おすすめは「顧客関係(名前を覚える、個別対応)」や「対応スピード」など、日々の積み上げで築ける軸——大手が構造的に真似しにくい領域です。</div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>価格競争に巻き込まれています。抜け出すには?</summary>
+      <div class="answer">値下げで応戦せず、3つの打ち手を検討してください。①ターゲットを絞り直す(価格で選ぶ客ではなく、価値で選ぶ客に集中する)、②比較対象を変える(「パンの値段」ではなく「家族の毎日の安心」で語る)、③価格は据え置いて価値を足す(特典・サービス・個別対応)。価格競争は体力のある大手が最後に勝つゲームなので、そもそも同じ土俵に乗らないことが戦略です。<a href="step3.html">→ ステップ3の解説へ</a></div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>ターゲットを絞ると売上が減りそうで怖いのですが。</summary>
+      <div class="answer">絞るのは「来店客の選別」ではなく「誰に一番響くように設計するかの決定」です。絞った層以外の来店を断るわけではありません。むしろ全員向けに設計された店は「誰にとってもわざわざ行く理由のない店」になり、じわじわ客を失います。尖ったメッセージは、結果としてその周辺の客層も引き寄せるのが実際のところです。</div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>ランチェスター戦略とは何ですか?中小企業に関係ありますか?</summary>
+      <div class="answer">大いに関係あります。ランチェスター戦略の「弱者の戦略」は、経営資源で劣る側の戦い方を示したもので、要点は①局地戦(狭い市場で戦う)、②一点集中(資源を分散しない)、③接近戦(顧客との距離を縮める)。ポーターの「集中戦略」と同じ発想で、「狭い市場でナンバーワンになる」ことを目指します。中小企業の事業戦略の教科書として最も実践的な考え方のひとつです。</div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>コストリーダーシップ戦略は、どのくらいの企業規模なら取れますか?地域で一番の規模なら可能ですか?</summary>
+      <div class="answer">「売上◯億円以上なら可能」という絶対的な基準はありません。条件は規模の絶対額ではなく、<strong>戦う市場の中で、競合より構造的に低いコストを実現できるか</strong>です。コスト優位の源泉は規模の経済・仕入交渉力・設備稼働率などであるため、事実上その市場でシェアトップクラスであることが前提になり、全国市場で成立するのは大手だけです。一方、ご質問のとおり<strong>市場を地域に限定して考えることは可能</strong>で、ポーターの集中戦略には「コスト集中(特定市場でのコスト優位)」という型があります。ただし成立するのは、地域での事業量がコストに直結する業種に限られます(配送・施工の密度、地域内物流、設備や人員の稼働率が効く事業など)。注意点として、商品の仕入原価は大手の全国規模の購買力が効くため、地域シェアが高いだけでは勝てないことが多い。地域密度が効く費目を持つかを見極めたうえで、多くの中小企業には<strong>コスト集中より差別化×集中のほうが安全</strong>です。<a href="step3.html">→ ステップ3の解説へ</a></div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>大手が同じ商圏に進出してきました。どう対応すべきですか?</summary>
+      <div class="answer">正面から同じ品揃え・同じ価格で対抗するのは最悪手です。大手が「構造的にできないこと」に軸足を移してください。例:個別対応・カスタマイズ、顧客一人ひとりを覚えた接客、即日の小回り対応、地域の事情に合わせた品揃え。同時に、既存顧客との接点(LINE・会員・定期訪問)を固めて流出を防ぎます。大手の進出は脅威ですが、「大手の画一的サービスに合わない客層」を明確にしてくれる機会でもあります。</div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>ターゲット市場はどの段階で決めるべきですか?何を基準に決めればいいですか?</summary>
+      <div class="answer">2段階で決めます。まず<strong>全社戦略(ステップ2)</strong>の事業ドメイン定義で「どの市場を土俵にするか」という大枠が決まり、次に<strong>事業戦略(ステップ3)の最初</strong>で「その中の誰に絞るか」を具体化します。順番が大事で、現状分析(ステップ1)の事実がそろう前にターゲットを決めると思い込みで選ぶことになります。決める基準は4つ:①<strong>市場性</strong>(十分な人数と支払い意欲があるか——絞った先に客がいなければ成立しない)、②<strong>強みとの適合</strong>(自社の強みが最も刺さる層か)、③<strong>競争環境</strong>(競合がその層への対応で手薄か)、④<strong>接近可能性</strong>(その層に届く販路・媒体を自社が持てるか)。実務では、既存の優良顧客(売上上位2割)の共通点から出発するのが、最も外しにくい方法です。<a href="step3.html">→ ステップ3の解説へ</a></div>
+    </details>
+    <details data-cat="biz">
+      <summary><span class="faq-cat cat-biz">事業戦略</span>差別化する価値や集中する顧客層はどう決めればいいですか?また、その選択が業績に与える影響はどう試算すればいいですか?</summary>
+      <div class="answer"><strong>【決め方】</strong>顧客層は、既存の優良顧客の共通点を起点に「市場性・強みとの適合・競合の空白・接近可能性」の4基準で選びます。差別化する価値は、顧客ヒアリングで出た「選ばれている理由」のうち、<strong>競合が提供できておらず、かつ真似されにくいもの</strong>を1〜2本に絞ります(候補が複数あれば「真似されにくさ」を優先)。<br><strong>【試算の仕方】</strong>精密な予測より、簡単な計算モデルで幅を持たせて見積もるのが実務的です。①売上を「客数 × 購入頻度 × 客単価 × 粗利率」に分解し、現状の数字を入れる。②戦略実行後の各要素の変化を、悲観・標準・楽観の3パターンで置く(例:常連の来店頻度が月2→2.5回、絞った層以外の客が1割減、など)。③市場側からも検算する(商圏内の対象世帯数 × 現実的なシェア=売上の上限)。④絞ることで失う売上(価格重視客の離脱など)も必ずマイナス側に入れ、差し引きで判断する。そして一気に切り替えず、<strong>一部の商品・期間で小さく試して実測値でモデルを更新</strong>してから本格展開すれば、試算の外れによる痛手を最小化できます。<a href="step3.html">→ ステップ3の解説へ</a></div>
+    </details>
+
+    <!-- 機能別戦略 -->
+    <h3 class="faq-group g-func" data-group="func">機能別戦略 <small>—— 施策への落とし込み・KPI・実行</small></h3>
+    <details data-cat="func">
+      <summary><span class="faq-cat cat-func">機能別戦略</span>従業員数人で「部門」がありません。それでも機能別戦略は必要ですか?</summary>
+      <div class="answer">必要です。ただし「部門」ではなく「役割」で考えてください。同じ人がマーケティングと営業を兼ねていても構いません。機能ごとに分けて書く意味は、抜け漏れの防止にあります。「販促は考えたが、それを支える資金繰り(財務)と人の教育(人事)を忘れていた」——これが機能別に書き出すだけで防げます。<a href="step4.html">→ ステップ4の解説へ</a></div>
+    </details>
+    <details data-cat="func">
+      <summary><span class="faq-cat cat-func">機能別戦略</span>KGIとKPIは、どのように設定すべきですか?</summary>
+      <div class="answer"><strong>KGI(最終ゴールの数字)を先に決め、それを分解してKPI(過程の数字)を導く</strong>のが正しい順番です。KGIは戦略の成否を測る結果指標で、全社・事業戦略の目標から1〜3個に絞ります(例:3年後に売上4,800万円、常連客300人)。次にKGIを式に分解します(例:売上=客数×購入頻度×客単価)。そして、式のどの要素をどの施策で動かすかを決め、<strong>施策ごとに1つずつKPI</strong>を置きます。KPIの条件は3つ:担当者の行動で動かせること、簡単に測れること、結果より先に動く先行指標であること(売上の前に「新規訪問件数」「LINE登録者数」が動く)。よくある失敗は、全部門のKPIを「売上」にしてしまうこと——売上はKGIであり、担当者が直接動かせないため、日々の行動につながりません。<a href="step4.html">→ ステップ4の解説へ</a></div>
+    </details>
+    <details data-cat="func">
+      <summary><span class="faq-cat cat-func">機能別戦略</span>KPIはいくつ設定すべきですか?</summary>
+      <div class="answer">原則は「1施策に1KPI」、会社全体で5〜10個までです。多すぎると集計が続かず、月次会議が数字の読み上げ会になります。選ぶ基準は3つ:担当者の行動で動かせること、簡単に測れること、売上より先に動く先行指標であること(例:売上ではなく「新規訪問件数」「LINE登録者数」)。</div>
+    </details>
+    <details data-cat="func">
+      <summary><span class="faq-cat cat-func">機能別戦略</span>人手不足で、施策を実行する余裕がありません。</summary>
+      <div class="answer">それは施策が多すぎるサインです。1機能3つまで・1人3つまでに絞り、それでも回らなければ「新しくやること」と同時に「やめる業務」を決めてください(やまだベーカリーの例では、赤字の移動販売をやめて営業時間を捻出しました)。実行する時間の確保まで含めて戦略です。時間が生まれない計画は、計画の側が間違っています。</div>
+    </details>
+    <details data-cat="func">
+      <summary><span class="faq-cat cat-func">機能別戦略</span>DX・IT化は何から始めればいいですか?</summary>
+      <div class="answer">「流行っているから」でツールを入れるのは失敗のもとです。順番は、①事業戦略上のボトルネックを特定する(例:リピート客との接点がない)、②それを解消する最小のITを選ぶ(例:LINE公式アカウント)、③効果を測って次に進む。顧客名簿、予約・取り置き、キャッシュレスなど身近な一歩で十分です。導入費用にはIT導入補助金などの公的支援も活用できます。</div>
+    </details>
+    <details data-cat="func">
+      <summary><span class="faq-cat cat-func">機能別戦略</span>部門ごとの施策が互いに矛盾している気がします。</summary>
+      <div class="answer">全機能の施策を1枚の表に並べ、4点をチェックしてください。①戦略との矛盾(差別化戦略なのに現場はコスト最優先になっていないか)、②負荷の集中(特定の人に施策が偏っていないか)、③順番の依存(AがないとBが始まらないのに期限が逆転していないか)、④資金の裏付け。矛盾を裁く基準は常に上位の事業戦略です。機能別戦略同士で綱引きになったら、「どちらが事業戦略の実現に効くか」で決めます。<a href="step4.html">→ ステップ4の解説へ</a></div>
+    </details>
+  </section>
+
+  <div class="pager">
+    <a class="prev" href="index.html"><small>戻る</small>← ホーム</a>
+    <a class="top" href="roadmap.html">↑ ロードマップ</a>
+    <a class="next" href="tool.html"><small>実践する</small>経営戦略シート作成ツール →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-nav">
+    <div>
+      <h4>3つの戦略を学ぶ</h4>
+      <a href="corporate.html">全社戦略とは</a>
+      <a href="business.html">事業戦略とは</a>
+      <a href="functional.html">機能別戦略とは</a>
+    </div>
+    <div>
+      <h4>つくり方(5つのステップ)</h4>
+      <a href="roadmap.html">戦略づくりロードマップ</a>
+      <a href="step1.html">1. 現状を棚卸しする</a>
+      <a href="step2.html">2. 全社戦略を決める</a>
+      <a href="step3.html">3. 事業戦略を決める</a>
+      <a href="step4.html">4. 機能別戦略に落とす</a>
+      <a href="step5.html">5. 実行して振り返る</a>
+    </div>
+    <div>
+      <h4>活用する</h4>
+      <a href="tool.html">経営戦略シート作成ツール</a>
+      <a href="faq.html">よくある質問(FAQ)</a>
+    </div>
+  </div>
+  <p>経営戦略｜まとめノート —— 本サイトは経営戦略の基本を学ぶための解説コンテンツです。</p>
+</footer>
+
+<script>
+(function () {
+  const buttons = document.querySelectorAll('#faqFilter button');
+  const items = [...document.querySelectorAll('#faq details')];
+  const groups = document.querySelectorAll('#faq .faq-group');
+  const countEl = document.getElementById('faqCount');
+  const searchEl = document.getElementById('faqSearch');
+  const catNames = { all: 'すべて', general: '戦略全般', corp: '全社戦略', biz: '事業戦略', func: '機能別戦略' };
+  let currentCat = 'all';
+  const h = location.hash.replace('#', '');
+  if (['general', 'corp', 'biz', 'func'].includes(h)) currentCat = h;
+
+  function apply() {
+    const q = searchEl.value.trim().toLowerCase();
+    let shown = 0;
+    items.forEach(d => {
+      const matchCat = currentCat === 'all' || d.dataset.cat === currentCat;
+      const matchText = !q || d.textContent.toLowerCase().includes(q);
+      const hide = !(matchCat && matchText);
+      d.classList.toggle('faq-hide', hide);
+      if (hide) d.open = false; else shown++;
+    });
+    groups.forEach(g => {
+      const any = items.some(d => d.dataset.cat === g.dataset.group && !d.classList.contains('faq-hide'));
+      g.classList.toggle('faq-hide', !any);
+    });
+    countEl.textContent = q
+      ? `「${searchEl.value.trim()}」の検索結果:${shown}件(カテゴリ:${catNames[currentCat]})`
+      : `${catNames[currentCat]}:${shown}件の質問を表示中`;
+  }
+
+  buttons.forEach(b => {
+    const c = b.dataset.cat;
+    const n = c === 'all' ? items.length : items.filter(d => d.dataset.cat === c).length;
+    b.textContent = `${catNames[c]} (${n})`;
+    b.classList.toggle('active', c === currentCat);
+    b.addEventListener('click', () => {
+      currentCat = c;
+      buttons.forEach(x => x.classList.toggle('active', x === b));
+      apply();
+    });
+  });
+  searchEl.addEventListener('input', apply);
+  document.getElementById('faqOpenAll').addEventListener('click', () =>
+    items.forEach(d => { if (!d.classList.contains('faq-hide')) d.open = true; }));
+  document.getElementById('faqCloseAll').addEventListener('click', () =>
+    items.forEach(d => d.open = false));
+  apply();
+})();
+</script>
+
+</body>
+</html>

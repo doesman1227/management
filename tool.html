@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経営戦略シート作成ツール|中小企業のための経営戦略入門</title>
+<meta name="description" content="5つのステップに沿って入力するだけで、自社の経営戦略シート(A4数枚)が完成。PDF保存にも対応した無料ツールです。">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== Tool layout ===== */
+  .toolbar {
+    max-width: 1080px; margin: 20px auto 0; padding: 0 20px;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  }
+  .btn {
+    border: none; cursor: pointer; font-family: inherit;
+    border-radius: 8px; padding: 10px 18px; font-size: .85rem; font-weight: 700;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--orange); color: #fff; box-shadow: 0 3px 10px rgba(224,123,57,.35); }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-ghost { background: #fff; color: var(--navy); border: 1px solid var(--border); }
+  .btn-danger { background: #fff; color: #c0504d; border: 1px solid #f0c8c8; }
+  .save-status { font-size: .78rem; color: var(--muted); margin-left: auto; }
+
+  .tabs {
+    max-width: 1080px; margin: 18px auto 0; padding: 0 20px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .tab {
+    border: 1px solid var(--border); background: #fff; color: var(--muted);
+    border-radius: 999px; padding: 8px 16px; font-size: .82rem; font-weight: 700;
+    cursor: pointer; font-family: inherit;
+  }
+  .tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .form-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 14px;
+    padding: 26px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(20,40,70,.05);
+  }
+  .form-card h3 { margin-bottom: 4px; }
+  .hint { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+  .hint a { color: var(--blue); }
+
+  label.f-label { display: block; font-size: .85rem; font-weight: 700; color: var(--navy); margin: 14px 0 4px; }
+  label.f-label small { font-weight: 400; color: var(--muted); }
+  input[type="text"], input[type="date"], textarea, select {
+    width: 100%; font-family: inherit; font-size: .9rem; color: var(--text);
+    border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px;
+    background: #fbfcfe;
+  }
+  input:focus, textarea:focus, select:focus { outline: 2px solid rgba(45,109,163,.35); background: #fff; }
+  textarea { resize: vertical; min-height: 84px; line-height: 1.7; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .row-2, .row-3 { grid-template-columns: 1fr; } }
+
+  .domain-preview {
+    background: #fff7ef; border-left: 4px solid var(--orange);
+    border-radius: 0 10px 10px 0; padding: 12px 18px; margin-top: 14px;
+    font-size: .95rem; font-weight: 700; color: var(--navy);
+  }
+
+  table.input-table { min-width: 760px; }
+  table.input-table td { padding: 6px 6px; }
+  table.input-table input, table.input-table select { padding: 8px 10px; font-size: .84rem; }
+  .row-del {
+    background: none; border: none; color: #c0504d; cursor: pointer;
+    font-size: 1rem; padding: 6px;
+  }
+  .add-row { margin-top: 8px; }
+
+  .panel-nav { display: flex; justify-content: space-between; margin: 8px 0 40px; }
+
+  /* ===== Report (preview / print) ===== */
+  #reportWrap { display: none; max-width: 880px; margin: 30px auto; padding: 0 20px; }
+  #reportWrap.visible { display: block; }
+  .report {
+    background: #fff; border: 1px solid var(--border); border-radius: 4px;
+    padding: 40px 44px; font-size: 10.5pt; line-height: 1.75;
+  }
+  .report h1 {
+    font-size: 16pt; color: var(--navy); text-align: center;
+    border-bottom: 3px double var(--navy); padding-bottom: 10px; margin-bottom: 6px;
+  }
+  .report .r-meta { text-align: right; font-size: 9pt; color: var(--muted); margin-bottom: 18px; }
+  .report h2 {
+    font-size: 12pt; color: #fff; background: var(--navy);
+    padding: 5px 12px; border-radius: 4px; margin: 22px 0 10px;
+  }
+  .report h3 {
+    font-size: 10.5pt; color: var(--navy);
+    border-left: 4px solid var(--orange); padding-left: 8px; margin: 16px 0 6px;
+  }
+  .report table {
+    width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6px 0 10px;
+    min-width: 0; box-shadow: none; border-radius: 0;
+  }
+  .report th, .report td { border: 1px solid #b8c4d0; padding: 5px 8px; }
+  .report thead th { background: #eef3f8; color: var(--navy); }
+  .report tbody th { background: #f6f8fb; color: var(--navy); width: 9em; font-weight: 700; }
+  .report .r-domain {
+    text-align: center; font-size: 12pt; font-weight: 700; color: var(--navy);
+    background: #fff7ef; border: 1px solid var(--orange); border-radius: 6px;
+    padding: 10px 14px; margin: 8px 0 12px;
+  }
+  .report .r-empty { color: #9aa7b4; font-style: italic; font-size: 9pt; }
+  .report .r-sec { break-inside: avoid-page; }
+
+  @media print {
+    header, .toolbar, .tabs, #app, footer, .page-hero, .breadcrumb, .print-note { display: none !important; }
+    #reportWrap { display: block !important; max-width: none; margin: 0; padding: 0; }
+    .report { border: none; padding: 0; }
+    body { background: #fff; }
+  }
+  @page { size: A4; margin: 14mm 13mm; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">経営戦略<span>｜</span>まとめノート</a>
+    <button class="nav-toggle" onclick="document.getElementById('siteNav').classList.toggle('open')" aria-label="メニューを開閉">☰ メニュー</button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="corporate.html">全社戦略</a></li>
+        <li><a href="business.html">事業戦略</a></li>
+        <li><a href="functional.html">機能別戦略</a></li>
+        <li><a href="roadmap.html">ロードマップ</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="tool.html" class="nav-tool active">✎ 作成ツール</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="step-badge">TOOL</span>
+    <h1>経営戦略シート作成ツール</h1>
+    <p>5つのステップに沿って入力すると、自社の「経営戦略シート」が完成します。入力内容はこのブラウザに自動保存され、最後にPDFとして保存できます。途中で閉じても続きから再開できます。</p>
+  </div>
+</div>
+
+<div class="breadcrumb"><a href="index.html">ホーム</a> › 経営戦略シート作成ツール</div>
+
+<div class="toolbar">
+  <button class="btn btn-primary" onclick="showReport(true)">📄 プレビュー &amp; PDF保存</button>
+  <button class="btn btn-ghost" onclick="exportJson()">💾 データ書き出し</button>
+  <button class="btn btn-ghost" onclick="document.getElementById('importFile').click()">📂 データ読み込み</button>
+  <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJson(event)">
+  <button class="btn btn-danger" onclick="resetAll()">🗑 入力を全消去</button>
+  <span class="save-status" id="saveStatus">自動保存:待機中</span>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-tab="0">基本情報</button>
+  <button class="tab" data-tab="1">STEP1 現状棚卸し</button>
+  <button class="tab" data-tab="2">STEP2 全社戦略</button>
+  <button class="tab" data-tab="3">STEP3 事業戦略</button>
+  <button class="tab" data-tab="4">STEP4 機能別戦略</button>
+  <button class="tab" data-tab="5">STEP5 実行と振り返り</button>
+</div>
+
+<main id="app" style="padding-top:24px;">
+
+  <!-- ===== 基本情報 ===== -->
+  <div class="panel active" data-panel="0">
+    <div class="form-card">
+      <h3>会社の基本情報</h3>
+      <p class="hint">戦略シートの表紙に印字されます。</p>
+      <div class="row-2">
+        <div><label class="f-label">会社名・屋号</label><input type="text" data-f="companyName" placeholder="例:やまだベーカリー"></div>
+        <div><label class="f-label">代表者・作成者</label><input type="text" data-f="ownerName" placeholder="例:山田 太郎"></div>
+      </div>
+      <div class="row-2">
+        <div><label class="f-label">作成日</label><input type="date" data-f="createdDate"></div>
+        <div><label class="f-label">対象期間 <small>(例:2026年度)</small></label><input type="text" data-f="period" placeholder="例:2026年度(2026年4月〜2027年3月)"></div>
+      </div>
+      <label class="f-label">事業内容(ひとこと)</label>
+      <input type="text" data-f="businessDesc" placeholder="例:住宅街でのパン製造小売、近隣カフェへの卸">
+    </div>
+    <div class="panel-nav"><span></span><button class="btn btn-navy" onclick="goTab(1)">次へ:STEP1 現状棚卸し →</button></div>
+  </div>
+
+  <!-- ===== STEP1 ===== -->
+  <div class="panel" data-panel="1">
+    <div class="form-card">
+      <h3>3C分析 —— 事実を3つの箱に整理する</h3>
+      <p class="hint">「意見」ではなく「事実」を箇条書きで。書き方の詳細と記入例は <a href="step1.html" target="_blank">ステップ1の解説</a> を参照。</p>
+      <label class="f-label">顧客(Customer)<small> —— 誰が・何を求めて買っているか。客数・単価の傾向</small></label>
+      <textarea data-f="c_customer" placeholder="例:売上の6割は半径1km圏内の常連客。30〜40代の子育て世帯が中心。「子どもに安心して食べさせられる」の声多数。"></textarea>
+      <label class="f-label">競合(Competitor)<small> —— 直接競合・間接競合とその強み・弱み</small></label>
+      <textarea data-f="c_competitor" placeholder="例:駅前チェーンAは2割安いが無添加・個別対応は不可。朝食需要はコンビニに流出。"></textarea>
+      <label class="f-label">自社(Company)<small> —— 選ばれる理由(顧客の声)、稼ぎ頭とお荷物、経営資源</small></label>
+      <textarea data-f="c_company" placeholder="例:稼ぎ頭は食パンと惣菜パン(売上55%)。移動販売は3年連続赤字。強みは無添加製法と常連との関係。"></textarea>
+    </div>
+
+    <div class="form-card">
+      <h3>SWOT分析</h3>
+      <p class="hint">自社で変えられるもの=内部(強み・弱み)、変えられないもの=外部(機会・脅威)。強みは顧客の声で裏付けを。</p>
+      <div class="row-2">
+        <div><label class="f-label">強み(S)</label><textarea data-f="swot_s"></textarea></div>
+        <div><label class="f-label">弱み(W)</label><textarea data-f="swot_w"></textarea></div>
+      </div>
+      <div class="row-2">
+        <div><label class="f-label">機会(O)</label><textarea data-f="swot_o"></textarea></div>
+        <div><label class="f-label">脅威(T)</label><textarea data-f="swot_t"></textarea></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>クロスSWOT —— 打ち手の候補を出す</h3>
+      <p class="hint">最重要は「強み×機会」。ここで出した候補がSTEP2の材料になります。</p>
+      <label class="f-label">強み × 機会 <small>(積極攻勢:強みで追い風に乗る)</small></label>
+      <textarea data-f="cross_so"></textarea>
+      <label class="f-label">強み × 脅威 <small>(差別化で防衛する)</small></label>
+      <textarea data-f="cross_st"></textarea>
+      <label class="f-label">弱み × 機会 <small>(チャンスのために克服する弱み)</small></label>
+      <textarea data-f="cross_wo"></textarea>
+      <label class="f-label">弱み × 脅威 <small>(回避・撤退の検討)</small></label>
+      <textarea data-f="cross_wt"></textarea>
+    </div>
+    <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(0)">← 基本情報</button><button class="btn btn-navy" onclick="goTab(2)">次へ:STEP2 全社戦略 →</button></div>
+  </div>
+
+  <!-- ===== STEP2 ===== -->
+  <div class="panel" data-panel="2">
+    <div class="form-card">
+      <h3>事業ドメイン —— うちは何屋か</h3>
+      <p class="hint">3つの空欄を埋めると一文が完成します。「モノ」ではなく「顧客の困りごと」で。記入例は <a href="step2.html" target="_blank">ステップ2の解説</a> へ。</p>
+      <div class="row-3">
+        <div><label class="f-label">誰の</label><input type="text" data-f="dom_who" placeholder="例:地域の家族"></div>
+        <div><label class="f-label">どんな困りごと・願いを</label><input type="text" data-f="dom_problem" placeholder="例:『毎日の食卓と特別な日』"></div>
+        <div><label class="f-label">どの強みで</label><input type="text" data-f="dom_strength" placeholder="例:無添加・焼きたてのパン"></div>
+      </div>
+      <div class="domain-preview" id="domainPreview">私たちは、(誰)の(困りごと)を、(強み)で解決する会社です</div>
+    </div>
+
+    <div class="form-card">
+      <h3>事業の仕分け(選択と集中)</h3>
+      <p class="hint">事業・商品群ごとに評価し、「伸ばす・維持・改善・撤退」を決めます。撤退・縮小を最低1つ決めるのが理想です。</p>
+      <div class="table-wrap">
+        <table class="input-table" id="bizTable">
+          <thead><tr><th>事業・商品群</th><th style="width:90px">売上構成</th><th style="width:90px">粗利</th><th style="width:100px">市場の伸び</th><th style="width:110px">仕分け</th><th>方針(ひとこと)</th><th style="width:40px"></th></tr></thead>
+          <tbody id="bizBody"></tbody>
+        </table>
+      </div>
+      <button class="btn btn-ghost add-row" onclick="addBizRow()">+ 行を追加</button>
+    </div>
+
+    <div class="form-card">
+      <h3>成長の方向(アンゾフ)と3年後の目標</h3>
+      <label class="f-label">優先順位1の打ち手</label>
+      <div class="row-2">
+        <select data-f="grow1_dir"><option value="">方向を選択</option><option>市場浸透(既存客×既存商品)</option><option>新市場開拓(新規客×既存商品)</option><option>新商品開発(既存客×新商品)</option><option>多角化(新規客×新商品)</option></select>
+        <input type="text" data-f="grow1_act" placeholder="打ち手 例:LINE通知で来店頻度を月2→3回へ">
+      </div>
+      <label class="f-label">優先順位2の打ち手</label>
+      <div class="row-2">
+        <select data-f="grow2_dir"><option value="">方向を選択</option><option>市場浸透(既存客×既存商品)</option><option>新市場開拓(新規客×既存商品)</option><option>新商品開発(既存客×新商品)</option><option>多角化(新規客×新商品)</option></select>
+        <input type="text" data-f="grow2_act" placeholder="打ち手">
+      </div>
+      <label class="f-label">優先順位3の打ち手</label>
+      <div class="row-2">
+        <select data-f="grow3_dir"><option value="">方向を選択</option><option>市場浸透(既存客×既存商品)</option><option>新市場開拓(新規客×既存商品)</option><option>新商品開発(既存客×新商品)</option><option>多角化(新規客×新商品)</option></select>
+        <input type="text" data-f="grow3_act" placeholder="打ち手">
+      </div>
+      <div class="row-2" style="margin-top:14px;">
+        <div><label class="f-label">売上目標 <small>現状 → 3年後</small></label><input type="text" data-f="goal_sales" placeholder="例:4,200万円 → 4,800万円"></div>
+        <div><label class="f-label">利益目標 <small>現状 → 3年後</small></label><input type="text" data-f="goal_profit" placeholder="例:経常140万円 → 300万円"></div>
+      </div>
+    </div>
+    <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(1)">← STEP1</button><button class="btn btn-navy" onclick="goTab(3)">次へ:STEP3 事業戦略 →</button></div>
+  </div>
+
+  <!-- ===== STEP3 ===== -->
+  <div class="panel" data-panel="3">
+    <div class="form-card">
+      <h3>事業戦略シート —— 最優先事業の勝ち方</h3>
+      <p class="hint">まず最優先の事業1つについて記入します。決め方の詳細は <a href="step3.html" target="_blank">ステップ3の解説</a> へ。</p>
+      <label class="f-label">対象の事業</label>
+      <input type="text" data-f="t_business" placeholder="例:店頭販売事業">
+      <label class="f-label">① 誰に <small>—— ターゲットと一人の顧客像(ペルソナ)</small></label>
+      <textarea data-f="t_who" placeholder="例:半径1kmの食の安全を気にする子育て世帯。ペルソナ:佐藤さん(38)、時短勤務、朝7時半に店の前を通る…"></textarea>
+      <label class="f-label">② 何を <small>—— 提供価値(顧客が求める×競合ができない×自社ができる)</small></label>
+      <textarea data-f="t_value" placeholder="例:「子どもに毎日安心して食べさせられる、焼きたてのパンがある暮らし」"></textarea>
+      <label class="f-label">③ 基本戦略</label>
+      <select data-f="t_strategy">
+        <option value="">選択してください</option>
+        <option>集中 × 差別化(中小企業の王道)</option>
+        <option>差別化</option>
+        <option>コストリーダーシップ</option>
+      </select>
+      <label class="f-label">③' 差別化の軸 <small>—— 「競合は◯◯できないが、うちは◯◯できる」の形で1〜2本</small></label>
+      <textarea data-f="t_diff" placeholder="例:(1)無添加・国産小麦の製法 (2)名前と好みを覚えた接客+取り置き対応"></textarea>
+      <label class="f-label">④ 価格方針 <small>—— 安売りしない理由まで</small></label>
+      <textarea data-f="t_price" placeholder="例:食パン480円を維持。比較対象を「パンの値段」から「家族の毎日の安心」に変える。"></textarea>
+      <label class="f-label">⑤ 勝ち負けの物差し <small>—— 現状 → 目標の数字で</small></label>
+      <textarea data-f="t_metric" placeholder="例:常連客数(月4回以上来店)180人 → 1年後300人"></textarea>
+    </div>
+    <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(2)">← STEP2</button><button class="btn btn-navy" onclick="goTab(4)">次へ:STEP4 機能別戦略 →</button></div>
+  </div>
+
+  <!-- ===== STEP4 ===== -->
+  <div class="panel" data-panel="4">
+    <div class="form-card">
+      <h3>機能別アクションプラン</h3>
+      <p class="hint">1機能につき施策は3つまで。担当は個人名、KPIは担当者が動かせる先行指標で。詳細は <a href="step4.html" target="_blank">ステップ4の解説</a> へ。</p>
+      <div class="table-wrap">
+        <table class="input-table" id="actTable">
+          <thead><tr><th style="width:150px">機能</th><th>施策</th><th style="width:100px">担当</th><th style="width:100px">期限</th><th>KPI:現状→目標</th><th style="width:40px"></th></tr></thead>
+          <tbody id="actBody"></tbody>
+        </table>
+      </div>
+      <button class="btn btn-ghost add-row" onclick="addActRow()">+ 行を追加</button>
+    </div>
+    <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(3)">← STEP3</button><button class="btn btn-navy" onclick="goTab(5)">次へ:STEP5 実行と振り返り →</button></div>
+  </div>
+
+  <!-- ===== STEP5 ===== -->
+  <div class="panel" data-panel="5">
+    <div class="form-card">
+      <h3>実行と振り返りの仕組み</h3>
+      <p class="hint">仕組みの作り方は <a href="step5.html" target="_blank">ステップ5の解説</a> へ。</p>
+      <div class="row-2">
+        <div><label class="f-label">月次会議の日時(固定)</label><input type="text" data-f="m_when" placeholder="例:毎月第1火曜 15:00〜16:00"></div>
+        <div><label class="f-label">参加者</label><input type="text" data-f="m_members" placeholder="例:店主、女将、田中(製造)"></div>
+      </div>
+      <label class="f-label">戦略を臨時見直しするトリガー</label>
+      <textarea data-f="m_triggers" placeholder="例:主要取引先の喪失/売上2割以上の急減/有力競合の商圏参入/大きな法改正・原価高騰"></textarea>
+      <label class="f-label">社員への共有方法</label>
+      <textarea data-f="m_share" placeholder="例:朝礼で月1回戦略の言葉で話す/KPIボードを休憩室に掲示/評価面談で戦略上の行動を話題にする"></textarea>
+      <label class="f-label">年次見直しの時期</label>
+      <input type="text" data-f="m_review" placeholder="例:毎年1月(決算2か月前)に半日">
+    </div>
+    <div class="panel-nav"><button class="btn btn-ghost" onclick="goTab(4)">← STEP4</button><button class="btn btn-primary" onclick="showReport(true)">完成!プレビュー &amp; PDF保存 →</button></div>
+  </div>
+
+</main>
+
+<!-- ===== Report ===== -->
+<div id="reportWrap">
+  <div class="print-note question-box" style="max-width:880px;margin:0 auto 16px;">
+    <strong>PDFにするには:</strong>下の「PDFとして保存」を押すと印刷画面が開きます。送信先(プリンター)で<strong>「PDFに保存」</strong>を選んで保存してください。
+    <div style="margin-top:10px;">
+      <button class="btn btn-primary" onclick="window.print()">🖨 PDFとして保存(印刷画面を開く)</button>
+      <button class="btn btn-ghost" onclick="showReport(false)">← 入力に戻る</button>
+    </div>
+  </div>
+  <div class="report" id="report"></div>
+</div>
+
+<footer>
+  <div class="footer-nav">
+    <div>
+      <h4>3つの戦略を学ぶ</h4>
+      <a href="corporate.html">全社戦略とは</a>
+      <a href="business.html">事業戦略とは</a>
+      <a href="functional.html">機能別戦略とは</a>
+    </div>
+    <div>
+      <h4>つくり方(5つのステップ)</h4>
+      <a href="roadmap.html">戦略づくりロードマップ</a>
+      <a href="step1.html">1. 現状を棚卸しする</a>
+      <a href="step2.html">2. 全社戦略を決める</a>
+      <a href="step3.html">3. 事業戦略を決める</a>
+      <a href="step4.html">4. 機能別戦略に落とす</a>
+      <a href="step5.html">5. 実行して振り返る</a>
+    </div>
+    <div>
+      <h4>活用する</h4>
+      <a href="tool.html">経営戦略シート作成ツール</a>
+      <a href="faq.html">よくある質問(FAQ)</a>
+    </div>
+  </div>
+  <p>経営戦略｜まとめノート —— 本サイトは経営戦略の基本を学ぶための解説コンテンツです。 入力内容はお使いのブラウザ内(localStorage)にのみ保存され、外部には送信されません。</p>
+</footer>
+
+<script>
+const LS_KEY = 'keiei-strategy-tool-v1';
+const BIZ_COLS = ['name','sales','profit','growth','verdict','policy'];
+const ACT_COLS = ['func','action','owner','due','kpi'];
+const FUNCS = ['マーケティング','営業・販売','製造・オペレーション','人事','財務','IT'];
+
+/* ===== Tabs ===== */
+function goTab(n) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab == n));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.dataset.panel == n));
+  showReport(false);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => goTab(t.dataset.tab)));
+
+/* ===== Dynamic rows ===== */
+function addBizRow(data = {}) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" data-col="name" placeholder="例:店頭販売"></td>
+    <td><input type="text" data-col="sales" placeholder="70%"></td>
+    <td><input type="text" data-col="profit" placeholder="高/中/低"></td>
+    <td><select data-col="growth"><option value=""></option><option>↑ 伸びる</option><option>→ 横ばい</option><option>↓ 縮む</option></select></td>
+    <td><select data-col="verdict"><option value=""></option><option>伸ばす</option><option>維持</option><option>改善</option><option>撤退</option></select></td>
+    <td><input type="text" data-col="policy" placeholder="例:営業強化し3年で構成30%へ"></td>
+    <td><button class="row-del" title="行を削除" onclick="this.closest('tr').remove(); save();">✕</button></td>`;
+  BIZ_COLS.forEach(c => { const el = tr.querySelector(`[data-col="${c}"]`); if (data[c]) el.value = data[c]; });
+  document.getElementById('bizBody').appendChild(tr);
+}
+function addActRow(data = {}) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><select data-col="func"><option value=""></option>${FUNCS.map(f => `<option>${f}</option>`).join('')}</select></td>
+    <td><input type="text" data-col="action" placeholder="施策"></td>
+    <td><input type="text" data-col="owner" placeholder="個人名"></td>
+    <td><input type="text" data-col="due" placeholder="例:6月末"></td>
+    <td><input type="text" data-col="kpi" placeholder="例:登録者数 0→300人"></td>
+    <td><button class="row-del" title="行を削除" onclick="this.closest('tr').remove(); save();">✕</button></td>`;
+  ACT_COLS.forEach(c => { const el = tr.querySelector(`[data-col="${c}"]`); if (data[c]) el.value = data[c]; });
+  document.getElementById('actBody').appendChild(tr);
+}
+
+/* ===== Collect / Restore ===== */
+function collect() {
+  const data = { f: {}, biz: [], act: [] };
+  document.querySelectorAll('[data-f]').forEach(el => data.f[el.dataset.f] = el.value);
+  document.querySelectorAll('#bizBody tr').forEach(tr => {
+    const row = {};
+    tr.querySelectorAll('[data-col]').forEach(el => row[el.dataset.col] = el.value);
+    if (Object.values(row).some(v => v && v.trim())) data.biz.push(row);
+  });
+  document.querySelectorAll('#actBody tr').forEach(tr => {
+    const row = {};
+    tr.querySelectorAll('[data-col]').forEach(el => row[el.dataset.col] = el.value);
+    if (Object.values(row).some(v => v && v.trim())) data.act.push(row);
+  });
+  return data;
+}
+function restore(data) {
+  document.querySelectorAll('[data-f]').forEach(el => { el.value = (data.f && data.f[el.dataset.f]) || ''; });
+  document.getElementById('bizBody').innerHTML = '';
+  document.getElementById('actBody').innerHTML = '';
+  const biz = (data.biz && data.biz.length) ? data.biz : [{}, {}, {}];
+  biz.forEach(r => addBizRow(r));
+  const act = (data.act && data.act.length) ? data.act : FUNCS.map(f => ({ func: f }));
+  act.forEach(r => addActRow(r));
+  updateDomainPreview();
+}
+
+/* ===== Save ===== */
+let saveTimer = null;
+function save() {
+  localStorage.setItem(LS_KEY, JSON.stringify(collect()));
+  const now = new Date();
+  document.getElementById('saveStatus').textContent =
+    `自動保存済み ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+}
+document.addEventListener('input', () => {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(save, 400);
+  updateDomainPreview();
+});
+
+function resetAll() {
+  if (!confirm('入力した内容をすべて消去します。よろしいですか?\n(先に「データ書き出し」でバックアップできます)')) return;
+  localStorage.removeItem(LS_KEY);
+  restore({});
+  document.getElementById('saveStatus').textContent = '自動保存:待機中';
+}
+
+/* ===== JSON export / import ===== */
+function exportJson() {
+  save();
+  const name = (collect().f.companyName || 'strategy').replace(/[\\/:*?"<>|]/g, '');
+  const blob = new Blob([JSON.stringify(collect(), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `経営戦略シート_${name}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function importJson(ev) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      restore(JSON.parse(reader.result));
+      save();
+      alert('データを読み込みました。');
+    } catch { alert('読み込めませんでした。書き出したJSONファイルを指定してください。'); }
+  };
+  reader.readAsText(file);
+  ev.target.value = '';
+}
+
+/* ===== Domain preview ===== */
+function updateDomainPreview() {
+  const g = id => (document.querySelector(`[data-f="${id}"]`).value || '').trim();
+  const who = g('dom_who') || '(誰)', prob = g('dom_problem') || '(困りごと)', str = g('dom_strength') || '(強み)';
+  document.getElementById('domainPreview').textContent = `私たちは、${who}の${prob}を、${str}で解決する会社です`;
+}
+
+/* ===== Report ===== */
+const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+const nl = s => esc(s).replace(/\n/g, '<br>');
+const val = (s, ph = '(未記入)') => (s && s.trim()) ? nl(s) : `<span class="r-empty">${ph}</span>`;
+
+function buildReport() {
+  const d = collect(), f = d.f;
+  const dateStr = f.createdDate ? f.createdDate.replace(/-/g, '/') : '';
+  const domain = (f.dom_who || f.dom_problem || f.dom_strength)
+    ? `私たちは、${esc(f.dom_who)}の${esc(f.dom_problem)}を、${esc(f.dom_strength)}で解決する会社です`
+    : '<span class="r-empty">(事業ドメイン未記入)</span>';
+
+  const bizRows = d.biz.map(r => `<tr><td>${esc(r.name)}</td><td>${esc(r.sales)}</td><td>${esc(r.profit)}</td><td>${esc(r.growth)}</td><td><strong>${esc(r.verdict)}</strong></td><td>${esc(r.policy)}</td></tr>`).join('')
+    || `<tr><td colspan="6" class="r-empty">(未記入)</td></tr>`;
+
+  const grow = [1,2,3].map(i => (f[`grow${i}_dir`] || f[`grow${i}_act`])
+    ? `<tr><td>${i}</td><td>${esc(f[`grow${i}_dir`])}</td><td>${esc(f[`grow${i}_act`])}</td></tr>` : '').join('')
+    || `<tr><td colspan="3" class="r-empty">(未記入)</td></tr>`;
+
+  const actRows = d.act.map(r => `<tr><td>${esc(r.func)}</td><td>${esc(r.action)}</td><td>${esc(r.owner)}</td><td>${esc(r.due)}</td><td>${esc(r.kpi)}</td></tr>`).join('')
+    || `<tr><td colspan="5" class="r-empty">(未記入)</td></tr>`;
+
+  document.getElementById('report').innerHTML = `
+    <h1>経営戦略シート</h1>
+    <div class="r-meta">
+      ${[
+        esc(f.companyName) || '<span class="r-empty">(会社名)</span>',
+        esc(f.ownerName),
+        dateStr ? '作成日:' + dateStr : '',
+        f.period ? '対象期間:' + esc(f.period) : ''
+      ].filter(Boolean).join(' / ')}
+      ${f.businessDesc ? '<br>事業内容:' + esc(f.businessDesc) : ''}
+    </div>
+
+    <div class="r-sec">
+      <h2>STEP 1|現状分析(3C・SWOT)</h2>
+      <table>
+        <tr><th>顧客</th><td>${val(f.c_customer)}</td></tr>
+        <tr><th>競合</th><td>${val(f.c_competitor)}</td></tr>
+        <tr><th>自社</th><td>${val(f.c_company)}</td></tr>
+      </table>
+      <table>
+        <thead><tr><th style="width:50%">強み(S)</th><th>弱み(W)</th></tr></thead>
+        <tbody><tr><td>${val(f.swot_s)}</td><td>${val(f.swot_w)}</td></tr></tbody>
+        <thead><tr><th>機会(O)</th><th>脅威(T)</th></tr></thead>
+        <tbody><tr><td>${val(f.swot_o)}</td><td>${val(f.swot_t)}</td></tr></tbody>
+      </table>
+      <h3>クロスSWOT(打ち手の候補)</h3>
+      <table>
+        <tr><th>強み×機会</th><td>${val(f.cross_so)}</td></tr>
+        <tr><th>強み×脅威</th><td>${val(f.cross_st)}</td></tr>
+        <tr><th>弱み×機会</th><td>${val(f.cross_wo)}</td></tr>
+        <tr><th>弱み×脅威</th><td>${val(f.cross_wt)}</td></tr>
+      </table>
+    </div>
+
+    <div class="r-sec">
+      <h2>STEP 2|全社戦略</h2>
+      <div class="r-domain">${domain}</div>
+      <h3>事業の仕分け</h3>
+      <table>
+        <thead><tr><th>事業・商品群</th><th>売上構成</th><th>粗利</th><th>市場</th><th>仕分け</th><th>方針</th></tr></thead>
+        <tbody>${bizRows}</tbody>
+      </table>
+      <h3>成長の方向(アンゾフ)</h3>
+      <table>
+        <thead><tr><th style="width:3em">優先</th><th>方向</th><th>打ち手</th></tr></thead>
+        <tbody>${grow}</tbody>
+      </table>
+      <table>
+        <tr><th>売上目標</th><td>${val(f.goal_sales)}</td><th>利益目標</th><td>${val(f.goal_profit)}</td></tr>
+      </table>
+    </div>
+
+    <div class="r-sec">
+      <h2>STEP 3|事業戦略${f.t_business ? ':' + esc(f.t_business) : ''}</h2>
+      <table>
+        <tr><th>① 誰に</th><td>${val(f.t_who)}</td></tr>
+        <tr><th>② 何を</th><td>${val(f.t_value)}</td></tr>
+        <tr><th>③ 基本戦略</th><td>${val(f.t_strategy)}</td></tr>
+        <tr><th>③' 差別化の軸</th><td>${val(f.t_diff)}</td></tr>
+        <tr><th>④ 価格方針</th><td>${val(f.t_price)}</td></tr>
+        <tr><th>⑤ 物差し</th><td>${val(f.t_metric)}</td></tr>
+      </table>
+    </div>
+
+    <div class="r-sec">
+      <h2>STEP 4|機能別アクションプラン</h2>
+      <table>
+        <thead><tr><th>機能</th><th>施策</th><th>担当</th><th>期限</th><th>KPI:現状→目標</th></tr></thead>
+        <tbody>${actRows}</tbody>
+      </table>
+    </div>
+
+    <div class="r-sec">
+      <h2>STEP 5|実行と振り返りの仕組み</h2>
+      <table>
+        <tr><th>月次会議</th><td>${val(f.m_when)}${f.m_members ? '<br>参加者:' + esc(f.m_members) : ''}</td></tr>
+        <tr><th>臨時見直しのトリガー</th><td>${val(f.m_triggers)}</td></tr>
+        <tr><th>社員への共有</th><td>${val(f.m_share)}</td></tr>
+        <tr><th>年次見直し</th><td>${val(f.m_review)}</td></tr>
+      </table>
+    </div>`;
+}
+
+function showReport(show) {
+  const wrap = document.getElementById('reportWrap');
+  if (show) {
+    save();
+    buildReport();
+    wrap.classList.add('visible');
+    document.getElementById('app').style.display = 'none';
+    document.querySelector('.tabs').style.display = 'none';
+    window.scrollTo({ top: 0 });
+  } else {
+    wrap.classList.remove('visible');
+    document.getElementById('app').style.display = '';
+    document.querySelector('.tabs').style.display = '';
+  }
+}
+
+/* ===== Init ===== */
+(function init() {
+  let data = {};
+  try { data = JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch {}
+  restore(data);
+  const dateEl = document.querySelector('[data-f="createdDate"]');
+  if (!dateEl.value) dateEl.value = new Date().toISOString().slice(0, 10);
+})();
+</script>
+
+</body>
+</html>

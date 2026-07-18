@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経営戦略｜まとめノート</title>
+<meta name="description" content="日本の中小企業経営者向けに、経営戦略の3階層(全社戦略・事業戦略・機能別戦略)を身近な例とフレームワークでわかりやすく解説します。">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 60%, #0d3b4f 100%);
+    color: #fff; text-align: center; padding: 80px 20px 90px;
+  }
+  .hero .badge {
+    display: inline-block; background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.3);
+    padding: 5px 18px; border-radius: 999px; font-size: .8rem;
+    letter-spacing: .1em; margin-bottom: 24px;
+  }
+  .hero h1 { font-size: clamp(1.6rem, 4.5vw, 2.6rem); line-height: 1.5; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: #ffc86b; }
+  .hero p { max-width: 640px; margin: 0 auto 36px; opacity: .9; font-size: .98rem; }
+  .hero-cta {
+    display: inline-block; background: var(--orange); color: #fff;
+    text-decoration: none; font-weight: 700; padding: 14px 40px;
+    border-radius: 999px; box-shadow: 0 6px 18px rgba(224,123,57,.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(224,123,57,.5); }
+  .hero-cta.ghost { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.4); box-shadow: none; margin-left: 10px; }
+
+  /* ===== Pyramid ===== */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 40px 0 20px; }
+  .pyramid a { text-decoration: none; display: block; width: 100%; }
+  .p-tier {
+    color: #fff; text-align: center; border-radius: 10px;
+    padding: 18px 16px; transition: transform .2s, box-shadow .2s;
+  }
+  .p-tier:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(20,40,70,.25); }
+  .p-tier strong { display: block; font-size: 1.15rem; margin-bottom: 2px; }
+  .p-tier small { opacity: .88; font-size: .82rem; }
+  .tier1 { background: linear-gradient(135deg, #2d6da3, #1b3a5c); max-width: 380px; margin: 0 auto; }
+  .tier2 { background: linear-gradient(135deg, #26a68a, #1f8a70); max-width: 560px; margin: 0 auto; }
+  .tier3 { background: linear-gradient(135deg, #eb9a5e, #e07b39); max-width: 740px; margin: 0 auto; }
+  .pyramid-note { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 8px; }
+
+  /* ===== Hub cards ===== */
+  .hub-card h3 a { color: var(--navy); text-decoration: none; }
+  .hub-card h3 a:hover { color: var(--blue); }
+  .hub-more {
+    display: inline-block; margin-top: 8px; font-size: .85rem; font-weight: 700;
+    color: var(--blue); text-decoration: none; border-bottom: 1px solid var(--blue);
+  }
+  .hub-more:hover { color: var(--orange); border-color: var(--orange); }
+  .mini-steps { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .mini-steps a {
+    text-decoration: none; background: #fff; border: 1px solid var(--border);
+    border-radius: 999px; padding: 8px 16px; font-size: .82rem; font-weight: 700; color: var(--navy);
+    transition: background .15s;
+  }
+  .mini-steps a:hover { background: #eef3f8; color: var(--blue); }
+
+  /* ===== Closing ===== */
+  .closing {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+    color: #fff; border-radius: 18px; text-align: center;
+    padding: 56px 24px; margin: 80px 0 20px;
+  }
+  .closing h2 { color: #fff; }
+  .closing p { max-width: 620px; margin: 0 auto 8px; opacity: .9; font-size: .95rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">経営戦略<span>｜</span>まとめノート</a>
+    <button class="nav-toggle" onclick="document.getElementById('siteNav').classList.toggle('open')" aria-label="メニューを開閉">☰ メニュー</button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="corporate.html">全社戦略</a></li>
+        <li><a href="business.html">事業戦略</a></li>
+        <li><a href="functional.html">機能別戦略</a></li>
+        <li><a href="roadmap.html">ロードマップ</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="tool.html" class="nav-tool">✎ 作成ツール</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <span class="badge">中小企業経営者・後継者・幹部のための入門ガイド</span>
+  <h1>むずかしい「経営戦略」を、<br><em>3つの階層</em>でスッキリ理解する</h1>
+  <p>全社戦略・事業戦略・機能別戦略——。言葉は聞くけれど、自社にどう当てはめればいいかわからない。そんな中小企業の経営者のために、身近な例とすぐ使えるフレームワークで解説します。</p>
+  <a class="hero-cta" href="#what">さっそく学ぶ ↓</a>
+  <a class="hero-cta ghost" href="roadmap.html">進め方を見る →</a>
+</div>
+
+<main>
+
+  <!-- ===== 経営戦略とは ===== -->
+  <section id="what">
+    <span class="section-label">Introduction</span>
+    <h2>経営戦略とは「限られた資源の使いみちを決めること」</h2>
+    <p class="lead">
+      経営戦略とは、ひとことで言えば<strong>「会社の目指す姿(ビジョン)を実現するために、ヒト・モノ・カネ・情報という限られた経営資源を、どこに・どう振り向けるかを決めた方針」</strong>です。
+      大企業よりも資源が限られる中小企業にとってこそ、「やること」と同じくらい<strong>「やらないこと」</strong>を決める戦略が重要になります。
+    </p>
+
+    <div class="card">
+      <h3>経営戦略は3つの階層でできている</h3>
+      <p class="muted">上の階層が方向を決め、下の階層がそれを具体化します。3つがつながって初めて戦略は機能します。各階層をクリックすると解説ページへ移動します。</p>
+      <div class="pyramid">
+        <a href="corporate.html"><div class="p-tier tier1"><strong>① 全社戦略</strong><small>会社全体として「どの土俵で戦うか」を決める</small></div></a>
+        <a href="business.html"><div class="p-tier tier2"><strong>② 事業戦略</strong><small>それぞれの事業で「どう勝つか」を決める</small></div></a>
+        <a href="functional.html"><div class="p-tier tier3"><strong>③ 機能別戦略</strong><small>営業・製造・人事・財務などが「どう支えるか」を決める</small></div></a>
+      </div>
+      <p class="pyramid-note">▲ 経営戦略の3階層(戦略ピラミッド)</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>階層</th><th>問い</th><th>決めること(例)</th><th>主な担い手</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>全社戦略</strong><br>(企業戦略)</td>
+            <td>どの事業をやるか?<br>やめるか?</td>
+            <td>事業ドメインの定義、新規事業・撤退、経営資源の配分</td>
+            <td>社長・経営陣</td>
+          </tr>
+          <tr>
+            <td><strong>事業戦略</strong><br>(競争戦略)</td>
+            <td>その事業で<br>どう勝つか?</td>
+            <td>ターゲット顧客、競合との差別化、価格・提供価値の設計</td>
+            <td>社長・事業責任者</td>
+          </tr>
+          <tr>
+            <td><strong>機能別戦略</strong></td>
+            <td>各部門はどう<br>それを支えるか?</td>
+            <td>マーケティング、営業、製造、人事、財務、ITの方針</td>
+            <td>部門長・現場リーダー</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="question-box">
+      <strong>POINT:</strong> 中小企業では、社長ひとりが3階層すべてを兼ねていることがほとんどです。だからこそ「いま自分はどの階層の話をしているのか」を意識するだけで、考えが整理され、社員への説明も格段にわかりやすくなります。
+    </div>
+  </section>
+
+  <!-- ===== 3つの戦略を学ぶ ===== -->
+  <section id="learn">
+    <span class="section-label">Learn</span>
+    <h2>3つの戦略を学ぶ</h2>
+    <p class="lead">各階層の「いつ決める?何を決める?」から具体例まで、1階層1ページで解説しています。上から順に読むのがおすすめです。</p>
+    <div class="grid grid-3">
+      <div class="card hub-card">
+        <span class="fw-tag">LAYER 1</span>
+        <h3><a href="corporate.html">全社戦略</a></h3>
+        <p>「うちは何屋か」を定め、注力する事業とやめることを決める、いちばん上位の戦略。事業ドメイン、選択と集中、アンゾフの成長マトリクス。</p>
+        <a class="hub-more" href="corporate.html">解説を読む →</a>
+      </div>
+      <div class="card hub-card">
+        <span class="fw-tag">LAYER 2</span>
+        <h3><a href="business.html">事業戦略</a></h3>
+        <p>決めた土俵で「誰に・何を・どう差をつけるか」。中小企業の王道は集中×差別化。3C分析、ポーターの基本戦略、ターゲットの絞り込み。</p>
+        <a class="hub-more" href="business.html">解説を読む →</a>
+      </div>
+      <div class="card hub-card">
+        <span class="fw-tag">LAYER 3</span>
+        <h3><a href="functional.html">機能別戦略</a></h3>
+        <p>戦略を日々の仕事につなげる最後の翻訳。マーケティング・営業・製造・人事・財務・ITごとの施策とKPI。</p>
+        <a class="hub-more" href="functional.html">解説を読む →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ロードマップ ===== -->
+  <section id="roadmap">
+    <span class="section-label">Roadmap</span>
+    <h2>いつ・どの順番で・何を決める?</h2>
+    <div class="card">
+      <h3>🗺 戦略づくりロードマップ</h3>
+      <p>理念 → 現状分析 → 全社戦略 → 事業戦略 → 機能別戦略 → 経営計画 → 実行・振り返り。すべての戦略を「決める順番」に並べ、それぞれの<strong>タイミング・決めること・見直しの周期</strong>を1ページにまとめました。年間カレンダーの例つきです。</p>
+      <a class="hub-more" href="roadmap.html">ロードマップを見る →</a>
+      <p class="muted" style="margin-top:18px; font-size:.85rem;">初めて作る人は、記入サンプルつきの「5つのステップ」をどうぞ(目安2〜3か月):</p>
+      <div class="mini-steps">
+        <a href="step1.html">1. 現状棚卸し</a>
+        <a href="step2.html">2. 全社戦略</a>
+        <a href="step3.html">3. 事業戦略</a>
+        <a href="step4.html">4. 機能別戦略</a>
+        <a href="step5.html">5. 実行と振り返り</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ツール & FAQ ===== -->
+  <section id="use">
+    <span class="section-label">Practice</span>
+    <h2>読んだら、そのまま作れます</h2>
+    <div class="grid grid-2">
+      <div class="card" style="border:2px solid var(--orange); background:#fff7ef;">
+        <h3>✎ 経営戦略シート作成ツール</h3>
+        <p>5つのステップに沿って入力するだけで「経営戦略シート」が完成する無料ツール。入力内容はブラウザに自動保存され、最後に<strong>PDFとして保存</strong>できます。</p>
+        <a class="hub-more" href="tool.html">ツールを使う →</a>
+      </div>
+      <div class="card hub-card">
+        <h3>❓ よくある質問(FAQ)</h3>
+        <p>「戦略と戦術の違いは?」「価格競争から抜け出すには?」「KGI・KPIはどう設定する?」——つまずきやすいポイント31問を、カテゴリ絞り込みとキーワード検索つきでまとめました。</p>
+        <a class="hub-more" href="faq.html">FAQを見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Closing ===== -->
+  <div class="closing">
+    <h2>戦略とは、明日の朝礼で話せる「一貫したストーリー」</h2>
+    <p>全社戦略で土俵を決め、事業戦略で勝ち方を決め、機能別戦略で日々の仕事につなげる。</p>
+    <p>この3階層が一本の線でつながったとき、社員の動きが揃い、限られた資源が最大の力を発揮します。まずはA4一枚、自社の3階層を書き出すことから始めてみてください。</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-nav">
+    <div>
+      <h4>3つの戦略を学ぶ</h4>
+      <a href="corporate.html">全社戦略とは</a>
+      <a href="business.html">事業戦略とは</a>
+      <a href="functional.html">機能別戦略とは</a>
+    </div>
+    <div>
+      <h4>つくり方(5つのステップ)</h4>
+      <a href="roadmap.html">戦略づくりロードマップ</a>
+      <a href="step1.html">1. 現状を棚卸しする</a>
+      <a href="step2.html">2. 全社戦略を決める</a>
+      <a href="step3.html">3. 事業戦略を決める</a>
+      <a href="step4.html">4. 機能別戦略に落とす</a>
+      <a href="step5.html">5. 実行して振り返る</a>
+    </div>
+    <div>
+      <h4>活用する</h4>
+      <a href="tool.html">経営戦略シート作成ツール</a>
+      <a href="faq.html">よくある質問(FAQ)</a>
+    </div>
+  </div>
+  <p>経営戦略｜まとめノート —— 本サイトは経営戦略の基本を学ぶための解説コンテンツです。</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戦略づくりロードマップ —— いつ・どの順番で・何を決めるか|経営戦略まとめノート</title>
+<meta name="description" content="理念から全社戦略・事業戦略・機能別戦略・経営計画・実行まで、どのタイミングで・どの順番で・何を決めるのかを1ページで解説する全体マップです。">
+<link rel="stylesheet" href="style.css">
+<style>
+  .flow { margin: 30px 0 10px; }
+  .flow-box {
+    background: #fff; border: 2px solid var(--navy); border-left-width: 8px;
+    border-radius: 12px; padding: 18px 22px; box-shadow: 0 2px 8px rgba(20,40,70,.05);
+  }
+  .flow-box .flow-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .flow-box h4 { color: var(--navy); font-size: 1.05rem; margin: 0; }
+  .flow-box .timing {
+    font-size: .75rem; font-weight: 700; color: #fff; background: var(--navy);
+    border-radius: 999px; padding: 2px 12px; white-space: nowrap;
+  }
+  .flow-box p { font-size: .88rem; margin-top: 6px; }
+  .flow-box p strong { color: var(--navy); }
+  .flow-box .links { font-size: .82rem; margin-top: 6px; }
+  .flow-box .links a { color: var(--blue); }
+  .flow-arrow { text-align: center; color: var(--navy); font-size: 1.3rem; line-height: 1; padding: 6px 0; }
+  .fb-gray { border-color: #8896a5; } .fb-gray .timing { background: #8896a5; }
+  .fb-navy { border-color: var(--navy); }
+  .fb-blue { border-color: var(--blue); } .fb-blue .timing { background: var(--blue); }
+  .fb-teal { border-color: var(--teal); } .fb-teal .timing { background: var(--teal); }
+  .fb-orange { border-color: var(--orange); } .fb-orange .timing { background: var(--orange); }
+  .flow-loop {
+    text-align: center; color: var(--muted); font-size: .85rem;
+    border: 1px dashed var(--muted); border-radius: 999px; padding: 8px 16px; margin-top: 14px;
+  }
+  .steps { counter-reset: step; display: grid; gap: 16px; margin-top: 26px; }
+  .step {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 24px 20px 72px; position: relative;
+    box-shadow: 0 2px 8px rgba(20,40,70,.05);
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 20px; top: 20px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--navy); color: #fff; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step h4 { color: var(--navy); margin-bottom: 4px; }
+  .step h4 small { color: var(--orange); font-size: .78rem; margin-left: 8px; }
+  .step p { font-size: .9rem; }
+  .step-link {
+    display: inline-block; margin-top: 8px; font-size: .85rem; font-weight: 700;
+    color: var(--blue); text-decoration: none; border-bottom: 1px solid var(--blue);
+  }
+  .step-link:hover { color: var(--orange); border-color: var(--orange); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">経営戦略<span>｜</span>まとめノート</a>
+    <button class="nav-toggle" onclick="document.getElementById('siteNav').classList.toggle('open')" aria-label="メニューを開閉">☰ メニュー</button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="corporate.html">全社戦略</a></li>
+        <li><a href="business.html">事業戦略</a></li>
+        <li><a href="functional.html">機能別戦略</a></li>
+        <li><a href="roadmap.html" class="active">ロードマップ</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="tool.html" class="nav-tool">✎ 作成ツール</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="step-badge">ROADMAP</span>
+    <h1>戦略づくりロードマップ<br>—— いつ・どの順番で・何を決めるか</h1>
+    <p>理念から全社戦略・事業戦略・機能別戦略・経営計画・実行まで。すべての戦略を「決める順番」に並べ、それぞれのタイミングと決めることを1ページにまとめました。</p>
+  </div>
+</div>
+
+<div class="breadcrumb"><a href="index.html">ホーム</a> › 戦略づくりロードマップ</div>
+
+<main>
+
+  <!-- ===== 全体フロー ===== -->
+  <section>
+    <span class="section-label">Overview</span>
+    <h2>全体フロー:上から順に決めていく</h2>
+    <p class="lead">
+      戦略は<strong>上位のものから順に</strong>決めます。上の決定が下の前提になるからです。逆に、日々の運用では下(現場の数字)から上へ情報を戻します。
+      まずは全体の流れを眺めて、自分がいまどこにいるのかを確認してください。
+    </p>
+
+    <div class="flow">
+      <div class="flow-box fb-gray">
+        <div class="flow-head"><h4>0. 経営理念・ビジョン</h4><span class="timing">創業・承継のとき</span></div>
+        <p><strong>決めること:</strong>何のための会社か(理念)、目指す姿(ビジョン)。すべての戦略の「目的地」であり、頻繁には変えません。</p>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box fb-navy">
+        <div class="flow-head"><h4>1. 現状分析(3C・SWOT)</h4><span class="timing">戦略を考える直前/年1回更新</span></div>
+        <p><strong>決めること(明らかにすること):</strong>顧客・競合・自社の「事実」と、クロスSWOTによる打ち手の候補。分析であって決定ではありませんが、以降のすべての決定の根拠になります。</p>
+        <p class="links"><a href="step1.html">→ 進め方:ステップ1</a></p>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box fb-blue">
+        <div class="flow-head"><h4>2. 全社戦略</h4><span class="timing">年1回点検/3〜5年ごとに本格見直し</span></div>
+        <p><strong>決めること:</strong>①事業ドメイン(何屋か)、②事業の組み合わせと資源配分(選択と集中・やめること)、③成長の方向(アンゾフ)、④3年後の数値目標。</p>
+        <p class="links"><a href="corporate.html">→ 解説:全社戦略とは</a> / <a href="step2.html">→ 進め方:ステップ2</a></p>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box fb-teal">
+        <div class="flow-head"><h4>3. 事業戦略</h4><span class="timing">全社戦略の直後・事業ごと/年1回点検</span></div>
+        <p><strong>決めること:</strong>①誰に(ターゲット)、②何を(提供価値)、③基本戦略と差別化の軸、④価格方針、⑤勝ち負けの物差し。事業が複数あれば事業の数だけ作ります。</p>
+        <p class="links"><a href="business.html">→ 解説:事業戦略とは</a> / <a href="step3.html">→ 進め方:ステップ3</a></p>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box fb-orange">
+        <div class="flow-head"><h4>4. 機能別戦略</h4><span class="timing">事業戦略の後/毎期(年度ごと)に更新</span></div>
+        <p><strong>決めること:</strong>マーケティング・営業・製造・人事・財務・ITごとに、施策(3つまで)・担当・期限・KPI。部門間の整合もここで確認します。</p>
+        <p class="links"><a href="functional.html">→ 解説:機能別戦略とは</a> / <a href="step4.html">→ 進め方:ステップ4</a></p>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box fb-navy">
+        <div class="flow-head"><h4>5. 経営計画(数字への落とし込み)</h4><span class="timing">戦略確定後/決算の1〜2か月前</span></div>
+        <p><strong>決めること:</strong>中期計画(3〜5年の売上・利益を年度展開)と単年度計画(アクションプランに月次の数値目標と資金繰りを付けたもの)。中小企業ならA4数枚で十分です。</p>
+        <p class="links"><a href="tool.html">→ 作成ツールで戦略シートを作る</a></p>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box fb-gray">
+        <div class="flow-head"><h4>6. 実行と振り返り</h4><span class="timing">毎月(月次会議)/四半期/年1回</span></div>
+        <p><strong>決めること:</strong>KPIの○△×判定と、×への手当て(やめる・変える・テコ入れ)。ズレたら「実行量→戦術→施策→戦略」の順に下から疑います。</p>
+        <p class="links"><a href="step5.html">→ 進め方:ステップ5</a></p>
+      </div>
+      <div class="flow-loop">↻ 年に1回、「1. 現状分析」に戻って全体を更新します(ゼロから作り直すのではなく差分更新でOK)</div>
+    </div>
+  </section>
+
+  <!-- ===== 決めることまとめ表 ===== -->
+  <section>
+    <span class="section-label">Summary</span>
+    <h2>一覧表:順番・問い・決めること・見直しのタイミング</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>順番</th><th>階層</th><th>答える問い</th><th>決めること(アウトプット)</th><th>見直しのタイミング</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td><strong>理念・ビジョン</strong></td><td>何のための会社か</td><td>理念とビジョンの一文</td><td>創業・承継時。原則変えない</td></tr>
+          <tr><td>1</td><td><strong>現状分析</strong></td><td>いま何が起きているか</td><td>3Cシート、クロスSWOT(打ち手候補)</td><td>年1回、数字と顧客の声を更新</td></tr>
+          <tr><td>2</td><td><strong>全社戦略</strong></td><td>どの土俵で戦うか</td><td>ドメイン一文、事業の役割マップ(選択と集中)、成長方向、3年目標</td><td>年1回点検、3〜5年または環境激変で本格見直し</td></tr>
+          <tr><td>3</td><td><strong>事業戦略</strong></td><td>その土俵でどう勝つか</td><td>事業戦略シート(誰に・何を・差別化・価格・物差し)×事業の数</td><td>年1回点検。物差しの連続未達や競合の激変で臨時見直し</td></tr>
+          <tr><td>4</td><td><strong>機能別戦略</strong></td><td>各機能はどう支えるか</td><td>機能別アクションプラン(施策・担当・期限・KPI)</td><td>毎期更新。四半期で施策の入替判定</td></tr>
+          <tr><td>5</td><td><strong>経営計画</strong></td><td>数字でどう表すか</td><td>中期計画+単年度計画(月次目標・資金繰り)</td><td>毎年、決算1〜2か月前に翌期分を作成</td></tr>
+          <tr><td>6</td><td><strong>実行・振り返り</strong></td><td>計画どおり進んでいるか</td><td>KPIボードの○△×と手当ての決定</td><td>毎月の月次会議(60分)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="question-box">
+      <strong>POINT:</strong>「決める順番」は0→6の一方通行ですが、<strong>「疑う順番」は逆(6→2)</strong>です。結果が出ないとき、いきなり全社戦略を疑わず、実行量→戦術→施策→事業戦略→全社戦略と、直しやすい下の階層から点検します。
+    </div>
+  </section>
+
+  <!-- ===== 場面別タイミング ===== -->
+  <section>
+    <span class="section-label">Timing</span>
+    <h2>場面別:いつ・何をやるか</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>場面</th><th>やること</th><th>目安の時間</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>初めて戦略を作るとき</strong></td>
+            <td>下の「5つのステップ」を1から順に。走りながら直す前提で、7割の完成度で走り出す</td>
+            <td>合計2〜3か月</td>
+          </tr>
+          <tr>
+            <td><strong>毎月</strong></td>
+            <td>月次会議:KPIの○△×確認 → ×への手当てをその場で決定</td>
+            <td>60分</td>
+          </tr>
+          <tr>
+            <td><strong>四半期ごと</strong></td>
+            <td>3か月ルールの判定:改善しない施策の撤退・入替。来期候補リストから補充</td>
+            <td>月次会議を30分延長</td>
+          </tr>
+          <tr>
+            <td><strong>毎年(決算1〜2か月前)</strong></td>
+            <td>年次見直し:現状分析の更新 → 全社・事業戦略の点検 → 翌期のアクションプラン+単年度計画の確定 → 社員への説明</td>
+            <td>半日〜1日</td>
+          </tr>
+          <tr>
+            <td><strong>3〜5年ごと</strong></td>
+            <td>全社戦略の本格見直し:ドメイン・事業の組み合わせ・中期目標を作り直す</td>
+            <td>1〜2日(外部専門家を交えるのも有効)</td>
+          </tr>
+          <tr>
+            <td><strong>臨時(トリガー発生時)</strong></td>
+            <td>主要取引先の喪失/売上2割以上の急減/強力な競合の参入/大きな法改正・原価高騰 → 影響を受ける階層から見直し</td>
+            <td>発生から1か月以内に着手</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:34px;">年間カレンダーの例(3月決算の会社)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>月</th><th>やること</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1月</strong></td><td>現状分析の更新(最新の売上データ・顧客の声・競合の動き)</td></tr>
+          <tr><td><strong>2月</strong></td><td>戦略見直し会議(半日):全社戦略・事業戦略の点検、翌期の重点を決定</td></tr>
+          <tr><td><strong>3月</strong></td><td>翌期の機能別アクションプランと単年度計画を確定。社員説明会で共有</td></tr>
+          <tr><td><strong>4月</strong></td><td>新年度スタート。KPIボードを翌期版に更新</td></tr>
+          <tr><td><strong>毎月</strong></td><td>月次会議(60分)。6月末・9月末・12月末は四半期判定を追加</td></tr>
+        </tbody>
+      </table>
+      <p class="table-caption">▲ 決算月が違う場合は、月をずらして読み替えてください(年次見直しは決算の1〜2か月前が目安)。</p>
+    </div>
+  </section>
+
+  <!-- ===== 5つのステップ ===== -->
+  <section id="howto">
+    <span class="section-label">How to</span>
+    <h2>初めて作る人へ:5つのステップ(期間の目安つき)</h2>
+    <p class="lead">分厚い経営計画書は必要ありません。A4で1〜2枚、以下の順番で書き出すだけでも「使える戦略」になります。各ステップの詳しい進め方は、記入サンプルつきの詳細ページで解説しています。</p>
+
+    <div class="steps">
+      <div class="step">
+        <h4>現状を棚卸しする(3C・SWOT)<small>目安:2〜4週間</small></h4>
+        <p>顧客・競合・自社の事実を書き出します。感覚ではなく、売上データやお客様の声など「事実」を集めるのがコツです。</p>
+        <a class="step-link" href="step1.html">詳しい進め方とサンプルを見る →</a>
+      </div>
+      <div class="step">
+        <h4>全社戦略:土俵を決める<small>目安:1〜2週間</small></h4>
+        <p>「誰の・どんな困りごとを・どの強みで解決する会社か」を一文にし、注力する事業とやめることを決めます。</p>
+        <a class="step-link" href="step2.html">詳しい進め方とサンプルを見る →</a>
+      </div>
+      <div class="step">
+        <h4>事業戦略:勝ち方を決める<small>目安:1〜2週間/事業</small></h4>
+        <p>事業ごとに「誰に・何を・どう差をつけるか」を決めます。ターゲットは「絞りすぎかな?」と思うくらいがちょうどいい。</p>
+        <a class="step-link" href="step3.html">詳しい進め方とサンプルを見る →</a>
+      </div>
+      <div class="step">
+        <h4>機能別戦略:部門の重点施策に落とす<small>目安:1〜2週間</small></h4>
+        <p>営業・製造・人事・財務・ITごとに「今期やる施策を3つまで」に絞り、担当と期限と数値目標を付けます。</p>
+        <a class="step-link" href="step4.html">詳しい進め方とサンプルを見る →</a>
+      </div>
+      <div class="step">
+        <h4>実行して、振り返る<small>仕組み化して毎月</small></h4>
+        <p>月1回、数字と施策の進捗を確認し、ズレていたら戦略ではなくまず打ち手を修正。戦略自体の見直しは年1回が目安です。</p>
+        <a class="step-link" href="step5.html">詳しい進め方とサンプルを見る →</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:28px; text-align:center; border:2px solid var(--orange); background:#fff7ef;">
+      <h3 style="font-size:1.15rem;">✎ 読んだら、そのまま作れます</h3>
+      <p style="max-width:640px; margin:0 auto 16px;">5つのステップに沿って入力するだけで「経営戦略シート」が完成する無料ツールを用意しました。入力内容はブラウザに自動保存され、最後に<strong>PDFとして保存</strong>できます。</p>
+      <a class="step-link" href="tool.html" style="font-size:.95rem;">経営戦略シート作成ツールを使う →</a>
+    </div>
+  </section>
+
+  <div class="pager">
+    <a class="prev" href="functional.html"><small>解説を読む</small>← 機能別戦略とは</a>
+    <a class="top" href="index.html">↑ ホームへ</a>
+    <a class="next" href="step1.html"><small>作りはじめる</small>ステップ1:現状を棚卸しする →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-nav">
+    <div>
+      <h4>3つの戦略を学ぶ</h4>
+      <a href="corporate.html">全社戦略とは</a>
+      <a href="business.html">事業戦略とは</a>
+      <a href="functional.html">機能別戦略とは</a>
+    </div>
+    <div>
+      <h4>つくり方(5つのステップ)</h4>
+      <a href="roadmap.html">戦略づくりロードマップ</a>
+      <a href="step1.html">1. 現状を棚卸しする</a>
+      <a href="step2.html">2. 全社戦略を決める</a>
+      <a href="step3.html">3. 事業戦略を決める</a>
+      <a href="step4.html">4. 機能別戦略に落とす</a>
+      <a href="step5.html">5. 実行して振り返る</a>
+    </div>
+    <div>
+      <h4>活用する</h4>
+      <a href="tool.html">経営戦略シート作成ツール</a>
+      <a href="faq.html">よくある質問(FAQ)</a>
+    </div>
+  </div>
+  <p>経営戦略｜まとめノート —— 本サイトは経営戦略の基本を学ぶための解説コンテンツです。</p>
+</footer>
+
+</body>
+</html>
