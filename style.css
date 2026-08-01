@@ -35,8 +35,8 @@ header {
 .logo span { color: var(--orange); }
 nav ul { display: flex; gap: 4px; list-style: none; }
 nav a {
-  text-decoration: none; color: var(--text); font-size: .85rem;
-  padding: 8px 12px; border-radius: 6px; transition: background .2s;
+  text-decoration: none; color: var(--text); font-size: .82rem;
+  padding: 8px 9px; border-radius: 6px; transition: background .2s; white-space: nowrap;
 }
 nav a:hover { background: #eef3f8; color: var(--blue); }
 nav a.active { background: #eef3f8; color: var(--blue); }
@@ -214,7 +214,7 @@ footer {
 }
 .footer-nav a:hover { color: var(--blue); text-decoration: underline; }
 
-@media (max-width: 860px) {
+@media (max-width: 1040px) {
   .header-inner { position: relative; }
   .nav-toggle { display: block; }
   nav {

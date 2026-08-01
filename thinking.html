@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戦略思考のOS —— 同じ事実から違う打ち手を見つける|経営戦略まとめノート</title>
+<meta name="description" content="ビッグピクチャー・ルールオブザゲーム・クイック&amp;ダーティ、鳥の目虫の目魚の目、イシューツリー、クリティカルシンキング、デシジョンツリーと期待値まで。戦略を考えるときの頭の使い方を解説します。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">経営戦略<span>｜</span>まとめノート</a>
+    <button class="nav-toggle" onclick="document.getElementById('siteNav').classList.toggle('open')" aria-label="メニューを開閉">☰ メニュー</button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="corporate.html">全社戦略</a></li>
+        <li><a href="business.html">事業戦略</a></li>
+        <li><a href="functional.html">機能別戦略</a></li>
+        <li><a href="analysis.html">環境分析</a></li>
+        <li><a href="thinking.html" class="active">戦略思考</a></li>
+        <li><a href="roadmap.html">ロードマップ</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="tool.html" class="nav-tool">✎ ツール</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="step-badge">THINKING</span>
+    <h1>戦略思考のOS<br>—— 同じ事実から違う打ち手を見つける</h1>
+    <p>フレームワークを埋めても良い戦略が出てこないのは、道具のせいではなく「頭の使い方」の問題です。優れた戦略家が見ているのは特別な情報ではなく、<strong>同じ情報の中にある違う構造</strong>。その見方は再現できます。</p>
+  </div>
+</div>
+
+<div class="breadcrumb"><a href="index.html">ホーム</a> › 戦略思考のOS</div>
+
+<main>
+
+  <section>
+    <span class="section-label">When &amp; What</span>
+    <h2>いつ使う?何が身につく?</h2>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th style="width:9em;">使う場面</th><td>戦略づくりの<strong>すべての段階</strong>で使う「頭の使い方」です。特に、分析はしたのに打ち手が平凡になるとき、議論が堂々巡りするとき、大きな投資判断で迷うときに効きます。</td></tr>
+          <tr><th>身につくこと</th><td>①全体構造を俯瞰する ②勝敗を決める変数を見抜く ③素早く仮説を立てて検証する ④自分の思い込みを疑う ⑤不確実な選択を数字で比べる</td></tr>
+          <tr><th>関連ページ</th><td>道具としての分析手法は <a href="analysis.html">環境分析</a> へ。決めた戦略を形にする流れは <a href="roadmap.html">ロードマップ</a> へ。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Core</span>
+    <h2>戦略思考の三種の神器</h2>
+    <p class="lead">順番に使うと、「世界を見る → 構造を見抜く → 勝ち筋を作る」という流れができます。</p>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="fw-tag">STEP 1</span>
+        <h3>🌏 ビッグピクチャー</h3>
+        <p><strong>「一段上から見ると、そもそも何が起きている?」</strong></p>
+        <p class="muted">目の前の問題にいきなり飛びつかず、それが起きている全体構造を見る。部分最適ではなく全体最適で考えるための視点。</p>
+      </div>
+      <div class="card">
+        <span class="fw-tag">STEP 2</span>
+        <h3>🎲 ルール・オブ・ザ・ゲーム</h3>
+        <p><strong>「この市場では、結局何を競っている?」</strong></p>
+        <p class="muted">市場を1つのゲームと捉え、勝敗を決めている本当の変数(KSF)を探す。常識とされる勝因を疑うのがポイント。</p>
+      </div>
+      <div class="card">
+        <span class="fw-tag">STEP 3</span>
+        <h3>⚡ クイック&amp;ダーティ</h3>
+        <p><strong>「本質だけ残したら、何が言えそう?」</strong></p>
+        <p class="muted">全部調べてから考えるのではなく、枝葉を大胆に切り落として先に仮説を作り、それを検証するために必要な情報だけを取りにいく。</p>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <strong>「Dirty」は雑という意味ではない:</strong>精緻さより<strong>本質を先に捉えること</strong>を優先する、という意味です。例:「対象企業10万社 × 年間利用額10万円 ≒ 市場100億円」——この粗さで十分、「検討する価値があるか」は判断できます。価値がありそうなら、その後で精度を上げればいい。
+    </div>
+
+    <div class="substep"><div class="num">KSF</div><h3>「勝敗を決める変数」を疑ってみる</h3></div>
+    <p>ルール・オブ・ザ・ゲームの核心は、<strong>業界の常識とされる勝因が本当の勝因とは限らない</strong>という点です。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>業界</th><th>常識とされる勝因</th><th>実は勝敗を決めているかもしれない変数</th></tr></thead>
+        <tbody>
+          <tr><td>飲食店</td><td>料理がおいしい店が勝つ</td><td>立地 × 回転率 × リピート率</td></tr>
+          <tr><td>部品加工</td><td>加工単価が安い会社が勝つ</td><td>顧客の開発段階でどれだけ早く相談されるか</td></tr>
+          <tr><td>法人向けIT</td><td>製品の機能が優れた会社が勝つ</td><td>経営層との関係の深さ(課題が案件になる前に相談されるか)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>問いは3つ。<strong>「この市場では本当は何を競っているのか?」「勝っている会社と負けている会社を分けているものは何か?」「その変数を自社は動かせるか?」</strong>——ここが定まると、KPIも自然に決まります(<a href="func-sales.html">営業戦略</a>・<a href="step4.html">ステップ4</a>参照)。</p>
+  </section>
+
+  <section>
+    <span class="section-label">Lenses</span>
+    <h2>視点を変える道具</h2>
+
+    <div class="substep"><div class="num">T-1</div><h3>鳥の目・虫の目・魚の目</h3></div>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>🦅 鳥の目(俯瞰)</h3>
+        <p>全体構造・市場・競争環境を高いところから見る。<br><strong>問い:</strong>この問題は全体のどこに位置しているのか?</p>
+      </div>
+      <div class="card">
+        <h3>🐜 虫の目(現場)</h3>
+        <p>顧客の行動、現場の実際の動きを近くで見る。<br><strong>問い:</strong>現場では実際に何が起きているのか?</p>
+      </div>
+      <div class="card">
+        <h3>🐟 魚の目(流れ)</h3>
+        <p>時間軸・市場変化・技術進化の流れを見る。<br><strong>問い:</strong>この流れはどこへ向かっているのか?</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px;">3つとも使うのがコツです。鳥の目だけだと机上の空論に、虫の目だけだと近視眼に、魚の目だけだと評論家になります。</p>
+
+    <div class="substep"><div class="num">T-2</div><h3>リフレーミング —— 問題の枠を変える</h3></div>
+    <p>問題そのものではなく、<strong>問題の定義</strong>を変えます。答えの前に、問いを疑うということです。</p>
+    <ul class="check">
+      <li>「売上をどう回復させるか?」→ <strong>「売上が落ちたことで見えた、本当の課題は何か?」</strong></li>
+      <li>「営業担当の売上をどう増やすか?」→ <strong>「営業担当が売らなくても売れる仕組みは作れないか?」</strong>(=EC・紹介・パートナー・マーケティング)</li>
+      <li>「待ち時間をどう短縮するか?」→ <strong>「そもそも待ち時間は短くする必要があるのか?」</strong>(=待ち時間の価値を変える)</li>
+    </ul>
+    <div class="question-box">
+      <strong>フォーカスを移動させる:</strong>同じ問題でも「どこを見るか」で発見は変わります。営業成績なら、営業担当 → 顧客 → <strong>失注した顧客</strong> → 成功した顧客 → 商談 → 商談が発生する前、と視点をずらしてみてください。多くの場合、答えは「商談が発生する前」にあります。
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Structure</span>
+    <h2>問題を構造化する —— イシューとイシューツリー</h2>
+    <p>考え始める前に<strong>「そもそも何について答えを出す必要があるのか(イシュー)」</strong>を決めます。答えの質より、問いの質が先です。そのうえで、大きな問題を考えられるサイズまで分解します。</p>
+    <div class="card">
+      <h3>イシューツリーの例:「売上が落ちた」</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>第1階層</th><th>第2階層</th><th>確認する数字</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2"><strong>顧客数が減った</strong></td><td>新規顧客が減った</td><td>新規問い合わせ件数、成約率</td></tr>
+            <tr><td>既存顧客が離れた</td><td>継続率、失注理由</td></tr>
+            <tr><td rowspan="2"><strong>顧客単価が下がった</strong></td><td>購入点数・数量が減った</td><td>1件あたり点数、リピート間隔</td></tr>
+            <tr><td>単価そのものが下がった</td><td>値引き率、商品構成比</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:8px;">分解の目的は「全部を調べること」ではなく、<strong>どこを調べれば答えが出るかを決めること</strong>。数字を1つ見れば、たいてい枝の半分は切り落とせます。</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Hypothesis</span>
+    <h2>仮説を作り、自分を疑う</h2>
+
+    <div class="substep"><div class="num">T-3</div><h3>アブダクション —— 事実を最もうまく説明する仮説を立てる</h3></div>
+    <p>「この現象を説明するなら、何が起きたと考えるのが最も自然か?」と考える推論です。</p>
+    <ul class="check">
+      <li><strong>観察:</strong>「継続取引の長い顧客ほど、経営層との接点が多い」</li>
+      <li><strong>仮説:</strong>「経営層との接点が、取引の継続に効いているのではないか?」</li>
+      <li><strong>検証:</strong>反例(接点が多いのに取引が細い顧客)を探し、仮説を修正する</li>
+    </ul>
+    <p class="muted">似た推論に<strong>インダクション(帰納)</strong>があります(複数の事例の共通点から一般則を作る)。どちらも結論は「証明済みの真理」ではなく<strong>仮説</strong>として扱うのが鉄則です。</p>
+
+    <div class="substep"><div class="num">T-4</div><h3>クリティカルシンキング —— 前提を疑う</h3></div>
+    <p>「批判する」ではなく<strong>「それは本当に正しいか」を論理・証拠・前提の面から検証する</strong>ことです。最も重要な問いは<strong>「その結論を成立させている前提は何か?」</strong>。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>よくある主張</th><th>検証の問い</th></tr></thead>
+        <tbody>
+          <tr><td>「若い人はうちの商品を買わない」</td><td>若い人とは何歳か? データはあるか? いつと比べているか? 例外はないか?</td></tr>
+          <tr><td>「うちの業界は値段で決まる」</td><td>本当に全案件がそうか? 高くても選ばれた案件はなぜ選ばれたのか?</td></tr>
+          <tr><td>「人手不足だから成長できない」</td><td>その仕事は本当に人がやる必要があるか? やめられる仕事はないか?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="question-box">
+      <strong>「自分の考えは仮」と置く:</strong>「私はこう思う」ではなく<strong>「現時点では、この仮説が最も有力だ」</strong>と考えると、反対意見や新しい情報が「自分への否定」ではなく<strong>「仮説を更新する材料」</strong>に変わります。会議の空気も、これだけで変わります。
+    </div>
+    <p><strong>認知バイアスにも注意。</strong>確証バイアス(自説に合う情報ばかり集める)、アンカリング(最初の数字に引きずられる)、正常性バイアス(異常を正常の範囲と考える)。最も危険なのは<strong>「自分だけは客観的だ」と思うこと</strong>です。</p>
+  </section>
+
+  <section>
+    <span class="section-label">Decide</span>
+    <h2>迷ったら数字で比べる —— デシジョンツリーと期待値</h2>
+    <p class="lead">新規事業・設備投資・撤退など「やるか、やらないか」で迷ったときの道具です。感覚の議論を、比較できる形に変えます。</p>
+
+    <div class="substep"><div class="num">D-1</div><h3>シナリオを木に整理し、期待値を計算する</h3></div>
+    <p><strong>期待値 = Σ(確率 × 収支)</strong>。同じ判断を何度も繰り返したときの「平均的な結果」です。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>シナリオ</th><th>確率</th><th>3年後の累計利益</th><th>寄与</th></tr></thead>
+        <tbody>
+          <tr><td>大成功(医療分野が主力化)</td><td>20%</td><td>+1.0億円</td><td>+2,000万円</td></tr>
+          <tr><td>想定どおり</td><td>50%</td><td>+2,000万円</td><td>+1,000万円</td></tr>
+          <tr><td>失敗(受注が伸びず設備が遊ぶ)</td><td>30%</td><td>▲3,000万円</td><td>▲900万円</td></tr>
+          <tr><td colspan="3"><strong>期待値</strong></td><td><strong>+2,100万円</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>期待値がプラスなら長期的には有利。ただし<strong>企業の意思決定は期待値だけでは決まりません</strong>。最悪ケースに耐えられるか(資金繰り)、長期戦略と整合するか、ブランドや人材への影響はどうか——これらを合わせて判断します(→ <a href="func-finance.html">財務戦略</a>)。</p>
+
+    <div class="substep"><div class="num">D-2</div><h3>本質は「計算」ではなく「入力値の精度」</h3></div>
+    <p>期待値の計算自体は簡単です。難しいのは<strong>確率と収支をどう見積もるか</strong>。ここが甘いと、精密な計算をしても答えは的外れになります。</p>
+    <ul class="check">
+      <li>確率は<strong>過去の実績</strong>から推定する(例:過去の試作案件が量産に移行した割合)</li>
+      <li>100%正確である必要はない。<strong>他社より少し精度が高ければ十分</strong></li>
+      <li>新しい事実が出たら確率を更新する(意思決定は一度きりではない)</li>
+    </ul>
+
+    <div class="substep"><div class="num">D-3</div><h3>リアルオプション —— 「将来の選択肢」に投資する</h3></div>
+    <p>初年度が赤字でも、<strong>それが将来の選択肢を生むなら投資価値がある</strong>という考え方です。たとえば新分野への小さな参入は、それ自体の利益が小さくても「技術の獲得」「人材の育成」「将来の本格参入の権利」を買っていることになります。</p>
+    <div class="question-box">
+      <strong>中小企業での使い方:</strong>大きく賭けず、<strong>「安く失敗できる実験」</strong>を複数持つこと。1件の試作、1つの新サービス、1エリアだけの営業——小さく試して学び、確率と収支の見積もり精度を上げてから本格投資に進みます。
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Sample</span>
+    <h2>使用例:ミナト精工が「勝ち筋」を見つけるまで</h2>
+    <div class="example-box">
+      <h4>思考OSを回した流れ</h4>
+      <ul class="check">
+        <li><strong>①ビッグピクチャー:</strong>「自動車部品の売上が伸びない」という目の前の問題から一段上がり、「そもそも当社は、顧客の何を支えて収益を得ている会社なのか?」と問い直した</li>
+        <li><strong>②ルール・オブ・ザ・ゲーム:</strong>業界の常識は「加工単価の安さ」。しかし勝っている同業を観察すると、<strong>共通点は「顧客の開発段階で相談されているか」</strong>だった。勝敗を決める変数はここだと仮説を立てた</li>
+        <li><strong>③リフレーミング:</strong>「どうすれば単価競争に勝てるか」→<strong>「どうすれば単価で比べられない相手になれるか」</strong>と問いを変えた</li>
+        <li><strong>④イシューツリー:</strong>「開発段階で相談される」を分解 → 顧客に技術者が接触しているか/事例が見える形になっているか/試作を短納期で受けられるか。数字を確認すると、<strong>技術者の顧客接触時間が全体の5%しかない</strong>ことが判明</li>
+        <li><strong>⑤アブダクション → 反証:</strong>「技術営業を増やせば相談が増える」という仮説に対し、「では技術者が訪問している既存顧客はどうか」を確認 → 該当3社は実際に試作依頼が多かった。仮説の確からしさが上がった</li>
+        <li><strong>⑥クイック&amp;ダーティ:</strong>対象圏内の装置メーカー約400社 × 想定取引額 → 市場規模を粗く見積もり、「注力に値する」と判断してから詳細調査に進んだ</li>
+        <li><strong>⑦期待値で判断:</strong>5軸加工機1.2億円の投資を3シナリオで試算(期待値+2,100万円)。最悪ケースでも資金繰りが安全線を割らないことを確認して実行を決定</li>
+      </ul>
+      <p style="margin-top:10px;">——このプロセスを経て、「価格で戦わない/開発パートナーになる」という<a href="business.html">事業戦略</a>にたどり着きました。<strong>フレームワークを埋めた結果ではなく、問いを変えた結果</strong>である点がポイントです。</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Practice</span>
+    <h2>実践:考えるときの10の問い</h2>
+    <p class="lead">重要な問題に直面したら、この順番で自問してください。会議の冒頭で読み上げるだけでも、議論の質が変わります。</p>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th style="width:3em;">1</th><td>何が起きている?(事実の確認)</td></tr>
+            <tr><th>2</th><td>そもそも本当に解くべき問題は何?(イシュー)</td></tr>
+            <tr><th>3</th><td>自分はどんな立場・文脈から見ている?</td></tr>
+            <tr><th>4</th><td>鳥・虫・魚の目では、それぞれどう見える?</td></tr>
+            <tr><th>5</th><td>フォーカスする場所を変えると何が見える?</td></tr>
+            <tr><th>6</th><td>自分が無意識に置いている前提は何?</td></tr>
+            <tr><th>7</th><td>この現象を最もよく説明する仮説は何?</td></tr>
+            <tr><th>8</th><td>このゲームの勝敗を決めている変数は何?</td></tr>
+            <tr><th>9</th><td>常識・制約を一つ外したらどうなる?</td></tr>
+            <tr><th>10</th><td>必要十分な精度で今すぐ検証するなら、何を調べる?</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="question-box">
+      <strong>制約を外す問い:</strong>行き詰まったら「予算が無制限なら?」「逆に予算ゼロなら?」「人がやらなくていいなら?」「競合の社長なら?」「顧客なら?」「10年後なら?」——1つ外すだけで、見えていなかった選択肢が現れます。
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Pitfalls</span>
+    <h2>よくある失敗と対策</h2>
+    <div class="fail-box">
+      <h4>戦略思考でつまずくパターン</h4>
+      <dl>
+        <dt>フレームワークを埋めることが目的になり、平凡な結論しか出ない</dt>
+        <dd>枠を埋める前に「そもそも解くべき問いは何か」を決める。フレームワークは思考の抜け漏れを防ぐ道具であって、答えを出す機械ではない。</dd>
+        <dt>情報が揃うまで判断を先送りし、機会を逃す</dt>
+        <dd>クイック&amp;ダーティで粗く判断し、「検討する価値があるか」だけ先に決める。精度を上げるのはその後。</dd>
+        <dt>自分の結論に合う情報ばかり集めてしまう(確証バイアス)</dt>
+        <dd>仮説を立てたら、意識的に反例を探す時間を取る。「この仮説が間違っているとしたら、どんな事実が見つかるはずか?」と問う。</dd>
+        <dt>社長の意見が強すぎて、誰も違う見方を出せない</dt>
+        <dd>「自分の考えは仮」と宣言してから議論を始める。反対意見を「仮説を更新する材料」として扱う姿勢を、まず社長が示す。</dd>
+        <dt>大きな投資を「勘」で決めてしまう</dt>
+        <dd>デシジョンツリーと期待値で、最低3シナリオを数字にする。最悪ケースに耐えられるかを財務の安全線と突き合わせる。</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-label">Checklist</span>
+    <div class="checklist">
+      <h3>戦略思考チェックリスト</h3>
+      <ul>
+        <li>目の前の問題より一段上の「全体構造」を確認した</li>
+        <li>この市場の「勝敗を決める変数(KSF)」を言語化した</li>
+        <li>業界の常識とされる勝因を一度は疑った</li>
+        <li>問題をイシューツリーで分解し、調べる場所を絞った</li>
+        <li>仮説を立て、意識的に反例を探した</li>
+        <li>自分が置いている前提を書き出した</li>
+        <li>大きな判断は3シナリオの期待値で比較した</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="pager">
+    <a class="prev" href="analysis.html"><small>関連</small>← 環境分析 —— 事実から組み立てる</a>
+    <a class="top" href="index.html">↑ ホーム</a>
+    <a class="next" href="roadmap.html"><small>次へ</small>戦略づくりロードマップ →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-nav">
+    <div>
+      <h4>3つの戦略を学ぶ</h4>
+      <a href="corporate.html">全社戦略とは</a>
+      <a href="business.html">事業戦略とは</a>
+      <a href="functional.html">機能別戦略とは</a>
+    </div>
+    <div>
+      <h4>戦略の道具</h4>
+      <a href="analysis.html">環境分析(PEST・5F・VRIO)</a>
+      <a href="thinking.html">戦略思考のOS</a>
+      <a href="roadmap.html">戦略づくりロードマップ</a>
+    </div>
+    <div>
+      <h4>つくり方(5つのステップ)</h4>
+      <a href="step1.html">1. 現状を棚卸しする</a>
+      <a href="step2.html">2. 全社戦略を決める</a>
+      <a href="step3.html">3. 事業戦略を決める</a>
+      <a href="step4.html">4. 機能別戦略に落とす</a>
+      <a href="step5.html">5. 実行して振り返る</a>
+    </div>
+    <div>
+      <h4>活用する</h4>
+      <a href="tool.html">経営戦略シート作成ツール</a>
+      <a href="faq.html">よくある質問(FAQ)</a>
+    </div>
+  </div>
+  <p>経営戦略｜まとめノート —— 本サイトは経営戦略の基本を学ぶための解説コンテンツです。</p>
+</footer>
+
+</body>
+</html>
